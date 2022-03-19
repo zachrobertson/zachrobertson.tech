@@ -14,18 +14,6 @@ const TitleContainer = styled.div`
     justify-content: center;
 `
 
-const ProfileImageWrapper = styled.div`
-    img {
-        margin: auto;
-        display: block;
-        width: 75px;
-        height: auto;
-        border-radius: 50%;
-        border: 2px solid black;
-        background: transparent;
-    }
-`
-
 const TitleParagraph = styled.div`
     margin-top: 0;
     padding-left: 1rem;
@@ -38,17 +26,6 @@ const TitleParagraph = styled.div`
         :visited {
             color: #000000;
         }
-    }
-
-    img {
-        display: inline-block;
-        width: 32px;
-        height: auto;
-        padding-top: .5rem;
-        padding-left: 1rem;
-        padding-right: .75rem;
-        border-radius: 0px;
-        border: none;
     }
 `
 
@@ -98,23 +75,43 @@ const IndexPage = ({
                 <link rel="canonical" href="https://zachrobertson.tech" />
             </Helmet>
             <TitleContainer>
-                <ProfileImageWrapper>
-                    <StaticImage
-                        src='../images/profile.jpg'
-                        alt='profile picture'
-                    />
-                </ProfileImageWrapper>
+                {/* You cannot use styled-components to styled StaticImages elements */}
+                {/* Reference: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-plugin-image/#using-staticimage-with-css-in-js-libraries*/}
+                <StaticImage
+                    src='../images/profile.jpg'
+                    alt='profile picture'
+                    style={{
+                        display: 'inline-block',
+                        width: '75px',
+                        height: 'auto',
+                        borderRadius: '50%',
+                        border: '2px solid black',
+                        background: 'transparent'
+                    }}
+                />
                 <TitleParagraph>
                     This is my blog, here I write about stuff.
                     <br/>
                     Mostly AI and Data Science.
                     <br/>
+                    {/* Same reason as above for inline styles */}
                     <StaticImage
                         src='../images/TF_FullColor_Icon.png'
                         alt='Tensorflow Logo'
                         transformOptions={{
                             fit : "contain"
                         }}
+                        style={{
+                            display: 'inline-block',
+                            width: '32px',
+                            height: 'auto',
+                            paddingTop: '.5rem',
+                            paddingLeft: '1rem',
+                            paddingRight: '.75rem',
+                            borderRadius: '0px',
+                            border: 'none',
+                        }}
+                        objectFit="contain"
                     />
                     <StaticImage
                         src='../images/python-logo-notext.png'
@@ -122,20 +119,47 @@ const IndexPage = ({
                         transformOptions={{
                             fit : "contain"
                         }}
+                        style={{
+                            display: 'inline-block',
+                            width: '32px',
+                            height: 'auto',
+                            paddingTop: '.5rem',
+                            paddingLeft: '1rem',
+                            paddingRight: '.75rem',
+                            borderRadius: '0px',
+                            border: 'none',
+                        }}
+                        objectFit="contain"
                     />
                     <StaticImage
                         src='../images/Git-Icon-Black.png'
                         alt='Git Logo'
-                        transformOptions={{
-                            fit : "contain"
+                        style={{
+                            display: 'inline-block',
+                            width: '32px',
+                            height: 'auto',
+                            paddingTop: '.5rem',
+                            paddingLeft: '1rem',
+                            paddingRight: '.75rem',
+                            borderRadius: '0px',
+                            border: 'none',
                         }}
+                        objectFit="contain"
                     />
                     <StaticImage
                         src='../images/JavaScript-Logo-Official.png'
                         alt='JavaScript Logo'
-                        transformOptions={{
-                            fit : "contain"
+                        style={{
+                            display: 'inline-block',
+                            width: '32px',
+                            height: 'auto',
+                            paddingTop: '.5rem',
+                            paddingLeft: '1rem',
+                            paddingRight: '.75rem',
+                            borderRadius: '0px',
+                            border: 'none',
                         }}
+                        objectFit="contain"
                     />
                 </TitleParagraph>
             </TitleContainer>

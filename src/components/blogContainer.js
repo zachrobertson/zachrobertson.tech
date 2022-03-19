@@ -72,7 +72,7 @@ const BlogContainer = ({
                 })
                 }
                 {data.timeToRead} min read
-                <p dangerouslySetInnerHTML={{__html: data.excerpt}}/>
+                <div dangerouslySetInnerHTML={{__html: data.excerpt}}/>
                 <StyledLine/>
             </StyledContainer>
     )

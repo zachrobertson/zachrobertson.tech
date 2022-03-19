@@ -1,9 +1,11 @@
 ---
 slug: "/blog/convolutional-neural-networks"
-title: "Convolutional Neural Networks"
-date: "2022-09-12"
+title: "Convolutional Neural Networks - BitPost 30 Day Challenge Day 12"
+date: "2021-09-12"
 author: "Zach Robertson"
 ---
+
+*Note: This article is from the BitPost 30 Day Challegne and was orignally posted there*
 
 A few days ago I wrote on article on [Deep Neural Networks](https://www.bitpost.app/u/zachrobertson/deep-neural-networks-9pB7Qun)(DNN) in which I explained the mathematics behind a [Perceptron](https://en.wikipedia.org/wiki/Perceptron), which is the most basic form of deep learning and the building block for more complex deep neural networks. In that article I promised to go into more detail on different kinds of neural networks and for the first one I wanted to cover [Convolutional Neural Networks](https://en.wikipedia.org/wiki/Convolutional_neural_network)(CNN), this is mainly because it is used in the [Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) domain, which aims to use computers to obtain understanding from images and videos, this allows me to easily explain what the model is actual doing using visual representations.
 

@@ -14,6 +14,7 @@ module.exports = {
     author: 'Zach Robertson'
   },
   plugins: [
+    "gatsby-plugin-netlify",
     "gatsby-plugin-styled-components",
     "gatsby-transformer-remark",
     "gatsby-plugin-image",

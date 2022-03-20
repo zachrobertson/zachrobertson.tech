@@ -2,9 +2,10 @@
 
 This is my website built using [gatsby.js](https://www.gatsbyjs.com/).
 
-You can find the old versions of the site that are their own branch, at `v*.zachrobertson.tech` where `v*` is the version number.
+You can find the old versions of the site at `branchName.zachrobertson.tech`
 
 Current Version: v1
+
 Old Versions:
   - [v0](https://github.com/zachrobertson/zachrobertson.tech/tree/v0)
 

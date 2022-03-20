@@ -19,6 +19,10 @@ const TitleParagraph = styled.div`
     padding-left: 1rem;
     align-content: center;
 
+    div {
+        margin-top :.25rem;
+    }
+
     a {
         padding: 0 1rem 0 0;
         color: #000000;
@@ -83,84 +87,81 @@ const IndexPage = ({
                     style={{
                         display: 'inline-block',
                         width: '75px',
-                        height: 'auto',
+                        height: '75px',
                         borderRadius: '50%',
-                        border: '2px solid black',
+                        border: '1px solid black',
                         background: 'transparent'
                     }}
                 />
                 <TitleParagraph>
-                    This is my blog, here I write about stuff.
-                    <br/>
-                    Mostly AI and Data Science.
-                    <br/>
+                    <span>
+                        This is my blog, here I write about stuff.
+                        <br/>
+                        Mostly AI and Data Science.
+                        <br/>
+                    </span>
                     {/* Same reason as above for inline styles */}
-                    <StaticImage
-                        src='../images/TF_FullColor_Icon.png'
-                        alt='Tensorflow Logo'
-                        transformOptions={{
-                            fit : "contain"
-                        }}
-                        style={{
-                            display: 'inline-block',
-                            width: '32px',
-                            height: 'auto',
-                            paddingTop: '.5rem',
-                            paddingLeft: '1rem',
-                            paddingRight: '.75rem',
-                            borderRadius: '0px',
-                            border: 'none',
-                        }}
-                        objectFit="contain"
-                    />
-                    <StaticImage
-                        src='../images/python-logo-notext.png'
-                        alt='Python Logo'
-                        transformOptions={{
-                            fit : "contain"
-                        }}
-                        style={{
-                            display: 'inline-block',
-                            width: '32px',
-                            height: 'auto',
-                            paddingTop: '.5rem',
-                            paddingLeft: '1rem',
-                            paddingRight: '.75rem',
-                            borderRadius: '0px',
-                            border: 'none',
-                        }}
-                        objectFit="contain"
-                    />
-                    <StaticImage
-                        src='../images/Git-Icon-Black.png'
-                        alt='Git Logo'
-                        style={{
-                            display: 'inline-block',
-                            width: '32px',
-                            height: 'auto',
-                            paddingTop: '.5rem',
-                            paddingLeft: '1rem',
-                            paddingRight: '.75rem',
-                            borderRadius: '0px',
-                            border: 'none',
-                        }}
-                        objectFit="contain"
-                    />
-                    <StaticImage
-                        src='../images/JavaScript-Logo-Official.png'
-                        alt='JavaScript Logo'
-                        style={{
-                            display: 'inline-block',
-                            width: '32px',
-                            height: 'auto',
-                            paddingTop: '.5rem',
-                            paddingLeft: '1rem',
-                            paddingRight: '.75rem',
-                            borderRadius: '0px',
-                            border: 'none',
-                        }}
-                        objectFit="contain"
-                    />
+                    <div>
+                        <StaticImage
+                            src='../images/TF_FullColor_Icon.png'
+                            alt='Tensorflow Logo'
+                            style={{
+                                display: 'inline-block',
+                                width: '32px',
+                                height: '32px',
+                                paddingTop: '.5rem',
+                                paddingRight: '.75rem',
+                                borderRadius: '0px',
+                                border: 'none',
+                            }}
+                            objectFit="contain"
+                        />
+                        <StaticImage
+                            src='../images/python-logo-notext.png'
+                            alt='Python Logo'
+                            style={{
+                                display: 'inline-block',
+                                width: '32px',
+                                height: '32px',
+                                paddingTop: '.5rem',
+                                paddingLeft: '1rem',
+                                paddingRight: '.75rem',
+                                borderRadius: '0px',
+                                border: 'none',
+                            }}
+                            objectFit="contain"
+                        />
+                        <StaticImage
+                            src='../images/Git-Icon-Black.png'
+                            alt='Git Logo'
+                            style={{
+                                display: 'inline-block',
+                                width: '32px',
+                                height: '32px',
+                                paddingTop: '.5rem',
+                                paddingLeft: '1rem',
+                                paddingRight: '.75rem',
+                                borderRadius: '0px',
+                                border: 'none',
+                            }}
+                            objectFit="contain"
+                        />
+                        <StaticImage
+                            src='../images/JavaScript-Logo-Official.png'
+                            alt='JavaScript Logo'
+                            style={{
+                                display: 'inline-block',
+                                width: '32px',
+                                height: '32px',
+                                paddingTop: '.5rem',
+                                paddingLeft: '1rem',
+                                paddingRight: '.75rem',
+                                borderRadius: '0px',
+                                border: 'none',
+                            }}
+                            objectFit="contain"
+                        />
+                    </div>
                 </TitleParagraph>
             </TitleContainer>
             {Posts}

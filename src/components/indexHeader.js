@@ -7,7 +7,7 @@ import MoneyButton from "@moneybutton/react-money-button"
 function Header() {
     // Need to update when the url changes
     
-    const headerShowDefault = false;
+    const headerShowDefault = true;
     const menuHoverDefault = false;
 
     const [showHeader, setShowHeader] = useState(headerShowDefault);

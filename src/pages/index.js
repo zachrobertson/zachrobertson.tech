@@ -1,208 +1,163 @@
-import { graphql } from "gatsby";
-import { Helmet } from 'react-helmet';
-import { StaticImage } from 'gatsby-plugin-image';
-import React from "react";
-import styled from 'styled-components';
-import RightPanelTemplate from "../components/rightPanelTemplate.js";
-import BlogContainer from '../components/blogContainer.js';
-import PageLayout from "../components/pageLayout.js";
+import React from "react"
+import { Link, graphql } from "gatsby"
+import styled from "styled-components"
+import Layout from "../components/indexLayout"
+import Profile from "../components/profile"
+import BlogContainer from "../components/blog/blogContainer"
 
-
-
-const TitleContainer = styled.div`
-    display: flex;
-    justify-content: center;
-`
-
-const TitleParagraph = styled.div`
-    margin-top: 0;
-    padding-left: 1rem;
-    align-content: center;
-
-    div {
-        margin-top :.25rem;
-    }
-
-    a {
-        padding: 0 1rem 0 0;
-        color: #000000;
-
-        :visited {
-            color: #000000;
-        }
-    }
-`
-
-
-const RightSidePanel = styled.div`
-    @media (max-width : 768px) {
-        display: none;
-    }
-    width: 20%;
-    position: absolute;
-    top: 15vh;
-    right: 0;
-    margin-right: 2rem;
-    border-top: 8px solid black;
-    text-align: left;
-
-    h3 {
-        margin: 0 auto;
-        font-size: 1.5rem;
-    }
-`
-
-
-// markup
-const IndexPage = ({
-    data: {
-        allMarkdownRemark : { edges },
-    },
+const IndexPage = ({ 
+  data: {
+    allMarkdownRemark :  { edges }, 
+  },
 }) => {
-    const Posts = edges.filter(
-        edge => !!edge.node.frontmatter && edge.node.frontmatter.title !== 'Upcoming Projects and Blogs'
-    ).map(
-        (edge) => {
-            return <BlogContainer data={edge.node} key={edge.node.frontmatter.slug}/>}
-    )
+  const Posts = edges
+    .filter(edge => !!edge.node.frontmatter.date)
+    .map(edge => <BlogContainer data={edge.node} key={edge.node.frontmatter.slug}/>)
 
-    const RightPanelMarkdown = edges.filter(
-        edge => edge.node.frontmatter.title === "Upcoming Projects and Blogs"
-    )[0] // should always be only 1 dimension
-    let RightPanelIndex = 0;
+  return (
+    <>
+      <Layout>
+        <IntroHeader>
+            <span>
+              <Profile/> 
+            </span>
+            <div>
+              <span>ZACH ROBERTSON :</span>
+              <br />
+              <p>
+                I like writing code and messing with tech hardware. Sometimes I write about my projects on my <Link to="/blog" style={{ textDecoration: "none" }}>blog</Link>.
+                Follow me on twitter <a href="https://twitter.com/ZachRTech" style={{ textDecoration: "none" }}>@ZachRTech</a> or check out my work on <a href="https://github.com/zachrobertson" style={{ textDecoration: "none" }}>GitHub</a>
+              </p>
+              <HorizontalLine /> 
+            </div>
+        </IntroHeader>         
+        <h2 style={{
+          textAlign: "center",
+          margin: "50px",
+          fontSize: "35px"
+        }}>
+          RECENT BLOG POSTS :
+        </h2>
+        <div>
+          {Posts}
+        </div>
+               
 
-    return (
-        <PageLayout current='HOME'>
-            <Helmet>
-                <meta className="application"/>
-                <title>ZACHROBERTSON.tech</title>
-                <link rel="canonical" href="https://zachrobertson.tech" />
-            </Helmet>
-            <TitleContainer>
-                {/* You cannot use styled-components to styled StaticImages elements */}
-                {/* Reference: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-plugin-image/#using-staticimage-with-css-in-js-libraries*/}
-                <StaticImage
-                    src='../images/profile.jpg'
-                    alt='profile picture'
-                    style={{
-                        display: 'inline-block',
-                        width: '75px',
-                        height: '75px',
-                        borderRadius: '50%',
-                        border: '1px solid black',
-                        background: 'transparent'
-                    }}
-                />
-                <TitleParagraph>
-                    <span>
-                        This is my blog, here I write about stuff.
-                        <br/>
-                        Mostly AI and Data Science.
-                        <br/>
-                    </span>
-                    {/* Same reason as above for inline styles */}
-                    <div>
-                        <StaticImage
-                            src='../images/TF_FullColor_Icon.png'
-                            alt='Tensorflow Logo'
-                            style={{
-                                display: 'inline-block',
-                                width: '32px',
-                                height: '32px',
-                                paddingTop: '.5rem',
-                                paddingRight: '.75rem',
-                                borderRadius: '0px',
-                                border: 'none',
-                            }}
-                            objectFit="contain"
-                        />
-                        <StaticImage
-                            src='../images/python-logo-notext.png'
-                            alt='Python Logo'
-                            style={{
-                                display: 'inline-block',
-                                width: '32px',
-                                height: '32px',
-                                paddingTop: '.5rem',
-                                paddingLeft: '1rem',
-                                paddingRight: '.75rem',
-                                borderRadius: '0px',
-                                border: 'none',
-                            }}
-                            objectFit="contain"
-                        />
-                        <StaticImage
-                            src='../images/Git-Icon-Black.png'
-                            alt='Git Logo'
-                            style={{
-                                display: 'inline-block',
-                                width: '32px',
-                                height: '32px',
-                                paddingTop: '.5rem',
-                                paddingLeft: '1rem',
-                                paddingRight: '.75rem',
-                                borderRadius: '0px',
-                                border: 'none',
-                            }}
-                            objectFit="contain"
-                        />
-                        <StaticImage
-                            src='../images/JavaScript-Logo-Official.png'
-                            alt='JavaScript Logo'
-                            style={{
-                                display: 'inline-block',
-                                width: '32px',
-                                height: '32px',
-                                paddingTop: '.5rem',
-                                paddingLeft: '1rem',
-                                paddingRight: '.75rem',
-                                borderRadius: '0px',
-                                border: 'none',
-                            }}
-                            objectFit="contain"
-                        />
-                    </div>
-                </TitleParagraph>
-            </TitleContainer>
-            {Posts}
-            <RightSidePanel>
-                <h3>
-                    {RightPanelMarkdown.node.frontmatter.title}
-                </h3>
-                {RightPanelMarkdown.node.htmlAst.children.map(
-                    (child) => {
-                        RightPanelIndex += 1;
-                       return(
-                        <RightPanelTemplate key={RightPanelIndex}>
-                            {child}
-                        </RightPanelTemplate>
-                    )}
-                )}
-            </RightSidePanel>
-        </PageLayout>
-    )
+        <ToDo>
+          
+            <h1>
+              UPCOMING PROJECTS :
+            </h1>
+
+            <HorizontalLine />
+            <ul >
+              <li key="ToDo1">
+                Make website actually work on mobile, sorry about that
+              </li>
+              <li key="ToDo2">
+                LittleBrother v0.0 alpha release :
+                <br />
+                <span> This is my open source dashboard camera project built around the ESP32 microcontroller</span>
+              </li>
+              <li key="ToDo3">
+                Blog post on how to incorporate MoneyButton into a JavaScript project
+              </li>
+            </ul>
+          
+        </ToDo>
+      </Layout>
+    </>
+  )
 }
 
-export default IndexPage;
+export default IndexPage
 
 export const pageQuery = graphql`
     query {
-        allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___date] }
-        ) {
-            edges {
-                node {
-                    excerpt(pruneLength: 250, format: HTML)
-                    frontmatter {
-                        date(formatString: "MMM DD, YYYY")
-                        slug
-                        title
-                        author
-                    }
-                    htmlAst
-                    timeToRead
-                }
+      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+        edges {
+          node {
+            excerpt(pruneLength: 1000, format: HTML)
+            frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              slug
+              title
+              author
             }
+          }
         }
+      }
     }
+  `
+
+const IntroHeader = styled.h1`
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  vertical-align: center;
+
+  span {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+  }
+  
+  div {
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    line-height: 150%;
+    display: inline-block;
+    padding-left: 10%;
+    vertical-align: bottom;
+
+    span {
+      font-size: 35px;
+      margin: 20px;
+    }
+
+    a {
+      color: purple;
+
+      :hover:visited {
+        color: red;
+      }
+
+      :visited {
+        color: purple;
+      }
+
+      :hover {
+        color: red;
+      }
+    }
+  }
 `
+
+const HorizontalLine = styled.hr`
+  display: block;
+  margin: 20px;
+  height: 2px;
+  background-color: #ffff;
+  border: none;
+`
+
+const ToDo = styled.div`
+  background: transparent;
+  padding: 10%;
+  padding-top: 10px;
+  padding-bottom: 10%;
+  height: auto;
+  border-radius: 10px/10px;
+  WebKitBorderRadius: 10px/10px;
+  text-align: center;
+  margin: 10% 10% 10% 10%;
+
+  ul {
+    list-style-type: circle;
+    text-align: left;
+    li {
+      padding: 10px;
+    }
+  }
+`;

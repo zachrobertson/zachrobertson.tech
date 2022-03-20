@@ -1,25 +1,23 @@
-import * as React from "react"
-import styled from 'styled-components';
+import React from "react"
+import Layout from "../components/layout"
 
-import PageLayout from "../components/pageLayout"
-
-
-const ErrorTextContainer = styled.div`
-    text-align: center;
-`
-
-
-// markup
-const NotFoundPage = () => {
+const Default404Page = () => {
     return (
-        <PageLayout>
-            <ErrorTextContainer>
-                This page doesn't exxist!
-                <br/>
-                That's pretty weird right?
-            </ErrorTextContainer>
-        </PageLayout>
+        <Layout>
+            <h1 style={{
+                textAlign: "center"
+            }}>
+                404. 
+                page not found!
+            </h1>
+            <br/>
+            <h5 style={{
+                textAlign: "center"
+            }}>
+                That's weird right?
+            </h5>
+        </Layout>
     )
 }
 
-export default NotFoundPage
+export default Default404Page

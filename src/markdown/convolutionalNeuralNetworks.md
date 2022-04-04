@@ -35,7 +35,7 @@ This image shows the shape of the input and output of each layer in the model an
 
 Here are some of the more interesting images produced after the first set of convolution and max pooling layers.
 
-![Max Pooling Layer 1 Filter 2]../images/max_pooling2d_2.png)
+![Max Pooling Layer 1 Filter 2](../images/max_pooling2d_2.png)
 ![Max Pooling Layer 1 Filter 12](../images/max_pooling2d_12.png)
 
 As you can see these are not quite as clear as the edge detection example, but this is to be expected. The computer is not trying to identify edges but instead trying to identify features it thinks are important for determining whether an image is of a cat or a dog and images are probably not the most important feature for that task.

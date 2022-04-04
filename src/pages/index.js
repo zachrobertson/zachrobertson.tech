@@ -11,16 +11,27 @@ import PageLayout from "../components/pageLayout.js";
 
 const TitleContainer = styled.div`
     display: flex;
-    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: left;
 `
 
 const TitleParagraph = styled.div`
     margin-top: 0;
     padding-left: 1rem;
     align-content: center;
+    font-size: 1.25rem;
+    display: inline-block;
+
+    span {
+        display: inline-block;
+    }
 
     div {
-        margin-top :.25rem;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 2rem;
+        margin-bottom: 1rem;
     }
 
     a {

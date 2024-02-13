@@ -1,13 +1,16 @@
 # ZACHROBERTSON.TECH
 
-This is my website built using [gatsby.js](https://www.gatsbyjs.com/).
+This is my website built using [Next.js](https://www.nextjs.com/).
 
 You can find the old versions of the site at `branchName.zachrobertson.tech`
 
 Current Version: v1
 
 Old Versions:
-  - [v0](https://github.com/zachrobertson/zachrobertson.tech/tree/v0)
+
+- [v0](https://github.com/zachrobertson/zachrobertson.tech/tree/v0)
+
+- [v1](https://github.com/zachrobertson/zachrobertson.tech/tree/v1)
 
 ## Layout
 

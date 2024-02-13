@@ -1,11 +1,12 @@
 ---
-slug: "/blog/convolutional-neural-networks"
 title: "Convolutional Neural Networks - BitPost 30 Day Challenge Day 12"
 date: "2021-09-12"
 author: "Zach Robertson"
 ---
 
-*Note: This article is from the BitPost 30 Day Challegne and was orignally posted there*
+## Note
+
+*This article is from the BitPost 30 Day Challegne and was orignally posted there*
 
 A few days ago I wrote on article on [Deep Neural Networks](https://www.bitpost.app/u/zachrobertson/deep-neural-networks-9pB7Qun)(DNN) in which I explained the mathematics behind a [Perceptron](https://en.wikipedia.org/wiki/Perceptron), which is the most basic form of deep learning and the building block for more complex deep neural networks. In that article I promised to go into more detail on different kinds of neural networks and for the first one I wanted to cover [Convolutional Neural Networks](https://en.wikipedia.org/wiki/Convolutional_neural_network)(CNN), this is mainly because it is used in the [Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) domain, which aims to use computers to obtain understanding from images and videos, this allows me to easily explain what the model is actual doing using visual representations.
 
@@ -13,30 +14,30 @@ A CNN is like a standard DNN in the fact that it has layers of neurons that are 
 
 Here is a visual example.
 
-![Ascent](../images/ascent.png)
+![Ascent](/blog/images/ascent.png)
 
 Say we want to find the edges of this image, a way to do this is to pass a very specific convolutional filter (`[[-1,0,1], [-2,0,2], [-1,0,1]]`) over the image. The reason this works is because of what we visually identify as an *edge*, they tend to have pretty high visual contrast between the sides the edge creates so this filter is a way of returning high pixel intensity values for the pixels with the highest contrast between their neighbors (this is just one way of doing [edge detection](https://en.wikipedia.org/wiki/Edge_detection)). The output of this convolution is show below, here the input image way actually a 2D array since it was black and white so the output will also a 2D array again show in black and white.
 
-![Ascent Edge Detection](../images/ascent_edges.png)
+![Ascent Edge Detection](/blog/images/ascent_edges.png)
 
 Another important idea in CNNs is the use of pooling, which is when we reduce the total number of pixels in the image while trying to retain the features highlighted during the convolution. We can also reduce the size of the output image during the convolutional filtering by increasing something called the stride, the number of pixels the filter is moved at each step, if we increase the stride the total number of pixels will be less. Pooling is different in that we are using some mathematical operation to combine blocks of pixels into a single pixel, this could be either taking the average of the pixels or only using the highest value, it all depends on the application it is being used in. For the example we have been using we want to increase the contrast on the edges as much as possible so to do this we can use a max pooling operation, which uses the max value from the block of pixels as the new pixel value. If we do this on 2 by 2 sections of the image this is the result.
 
-![Ascent Edge Detection Max Pooling](../images/ascent_edges_pooled.png)
+![Ascent Edge Detection Max Pooling](/blog/images/ascent_edges_pooled.png)
 
 So far we have talked about what a convolution is but I haven't yet explained how this is actually used for machine learning. Typically convolutional layers are not used by themselves, we still need a traditional DNN connected to our convolutional layers to make predictions, so the convolutional layers are more of a tool for extracting important information from the images (features) for the DNN to use. There are many different applications where you could use CNNs to do a task but I think the most common ones are object detection and image prediction. Object detection is identifying one or more objects in an image (including their location) while image predication is saying whether or not an image represents some class (cat/dog/pig/llama, pizza/not pizza, etc.), they do this by training on a dataset of images that have labels associated with them so that after the image has passed through the convolutional layers it is sent to a layer (can also be more than one) of standard neurons that then produce a prediction on the class of the image or the location of an object. We can then use the standard back propagation gradient descent algorithm I discussed in the [Deep Neural Networks](https://www.bitpost.app/u/zachrobertson/deep-neural-networks-9pB7Qun) article to train the model, which will also train the convolutional filter weights.
 
 To give you an example I have made a quick model using a python library/framework called [TensorFlow](https://www.tensorflow.org/), the model will predict whether or not an image contains a dog or a cat (it assumes that one of the two will be present). Here is the model architecture :
 
-![Dog or Cat Model Architecture](../images/dog_or_cat.png)
+![Dog or Cat Model Architecture](/blog/images/dog_or_cat.png)
 
 This image shows the shape of the input and output of each layer in the model and I want to walk through these. The first layer is just an input which accepts 150 by 150 RGB encoded images (a 3D array), the next is a convolutional layer that takes in the image and applies 16 different filters to the image to produce a 3D array with depth 16. We then have a max pooling layer which reduces the number of pixels in each of the 16 2D arrays by half (using the max of the pixel blocks like discussed earlier). Then we have 3 more sets of a convolution layer followed by a max pooling layer, the first two convolutions will have 32 filters and the last one will have 64 filters. Then we flatten the output of the last max pooling layer so that we can feed it into the DNN, which only has two layers. The first is the hidden layer that will provided the prediction functionality, and the last is the output layer that tells use whether the image is of a cat or a dog. To see how the model is functioning, after I trained it I gave it the image of a dog shown below and wrote a script that would display the outputs from a specific convolution or max pooling layer.
 
-![Dog](../images/conv2d_input.png)
+![Dog](/blog/images/conv2d_input.png)
 
 Here are some of the more interesting images produced after the first set of convolution and max pooling layers.
 
-![Max Pooling Layer 1 Filter 2](../images/max_pooling2d_2.png)
-![Max Pooling Layer 1 Filter 12](../images/max_pooling2d_12.png)
+![Max Pooling Layer 1 Filter 2](/blog/images/max_pooling2d_2.png)
+![Max Pooling Layer 1 Filter 12](/blog/images/max_pooling2d_12.png)
 
 As you can see these are not quite as clear as the edge detection example, but this is to be expected. The computer is not trying to identify edges but instead trying to identify features it thinks are important for determining whether an image is of a cat or a dog and images are probably not the most important feature for that task.
 

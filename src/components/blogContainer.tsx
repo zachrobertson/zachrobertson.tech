@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
-import { calcNumberOfTimers } from '../utils/timeToRead';
+
+import { BlogData } from '@/interfaces/blog';
 
 
 const StyledContainer = styled.div`
@@ -44,34 +45,16 @@ const StyledLine = styled.hr`
     background-color: #000;
 `
 
-const TimerElement = styled.p`
-    display: inline-block;
-    margin: 0;
-`
+const BlogContainer = (data: BlogData) => {
+    const date = new Date(data.date);
+    const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
 
-const BlogContainer = ({
-    data
-}) => {
-    const timers = calcNumberOfTimers(data.timeToRead);
-    let timerElements = [];
-    for (let i = 0; i < timers; i++) {
-        timerElements.push(
-            <TimerElement key={i}>
-                &#9203;
-            </TimerElement>
-        )
-    }
     return (
             <StyledContainer>
-                <Link to={data.frontmatter.slug}>
-                    <h1>{data.frontmatter.title}</h1>
+                <Link href={`/blog/${data.id}`}>
+                    <h1>{data.title}</h1>
                 </Link>
-                {data.frontmatter.date} - 
-                {timerElements.map((element) => {
-                    return element
-                })
-                }
-                {data.timeToRead} min read
+                {formattedDate}
                 <div dangerouslySetInnerHTML={{__html: data.excerpt}}/>
                 <StyledLine/>
             </StyledContainer>

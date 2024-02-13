@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import '@fontsource/oswald';
+import "@fontsource/oswald";
+import { createGlobalStyle } from "styled-components";
 
-import Header from './header.js';
-import Footer from './footer.js';
-import { createGlobalStyle } from "styled-components"
-import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+import Header from './header';
+import Footer from './footer';
+
 
 const Global = createGlobalStyle`
     html, body {
@@ -21,21 +21,21 @@ const Global = createGlobalStyle`
 const StyledLayout = styled.div`
 `
 
-const PageLayout = (data) => {
-    deckDeckGoHighlightElement();
+type LayoutProps = {
+    children: React.ReactNode;
+};
 
+const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
             <Global/>
             <StyledLayout>
-                    <Header>
-                        {data.current}
-                    </Header>
-                    {data.children}
-                    <Footer/>
+                <Header/>
+                {children}
+                <Footer/>
             </StyledLayout>
         </>
-    )
-}
+    );
+};
 
-export default PageLayout
+export default Layout;

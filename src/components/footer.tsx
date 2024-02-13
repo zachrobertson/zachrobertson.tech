@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
-import { Link } from 'gatsby';
-
+import Link from 'next/link';
+import styled from 'styled-components';
 
 const StyledFooter = styled.div`
     width: 100%;
@@ -25,32 +24,29 @@ const StyledFooter = styled.div`
 
 `
 
-const RSSLink = styled(Link)`
-    float: right;
-    margin-right: 2rem;
-`
-
 const Footer = () => {
     return (
         <StyledFooter>
-            <a href='https://github.com/zachrobertson'>
+            <Link href='https://github.com/zachrobertson'>
                 <span>
                     GitHub
                 </span>
-            </a>
-            <a href='https://www.linkedin.com/in/zachrobertson-tech/'>
+            </Link>
+            <Link href='https://www.linkedin.com/in/zachrobertson-tech/'>
                 <span>
                     LinkedIn
                 </span>
-            </a>
-            <a href='https://twitter.com/ZachRTech'>
+            </Link>
+            <Link href='https://twitter.com/ZachRTech'>
                 <span>
                     Twitter
                 </span>
-            </a>
-            <RSSLink to='/rss.xml'>
-                RSS
-            </RSSLink>
+            </Link>
+            <Link href='/rss'>
+                <span>
+                    RSS
+                </span>
+            </Link>
         </StyledFooter>
     )
 }

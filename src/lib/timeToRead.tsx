@@ -1,4 +1,4 @@
-export function calcNumberOfTimers(timeToRead) {
+export function calcNumberOfTimers(timeToRead: number) {
     let numTimers = 0;
     switch(true) {
         case 0 < timeToRead && timeToRead < 5:

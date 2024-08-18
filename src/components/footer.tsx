@@ -9,20 +9,20 @@ const StyledFooter = styled.div`
     padding-top: 2vh;
     padding-bottom: 2vh;
     font-size: 1rem;
+    background-color: #1e1e1e;
 
     a {
-        color: #000000;
+        color: #00ff00;
 
         :visited {
-            color: #000000;
+            color: #00ff00;
         }
 
         span {
-            margin: 0 2vh;
+            margin: 0 1rem;
         }
     }
-
-`
+`;
 
 const Footer = () => {
     return (

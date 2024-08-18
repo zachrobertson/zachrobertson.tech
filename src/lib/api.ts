@@ -5,7 +5,7 @@ import { BlogData } from "@/interfaces/blog";
 import markdownToHtml from "./markdownToHtml";
 
 const BLOGS_DIRECTORY = path.join(process.cwd(), "_blogs");
-const EXCERPT_LENGTH = 200;
+const EXCERPT_LENGTH = 500;
 
 export function getBlogIds() {
     return fs.readdirSync(BLOGS_DIRECTORY).map(file => file.replace(/\.md$/, ''));
@@ -18,16 +18,26 @@ export async function getBlogById(id: string): Promise<BlogData> {
     const { data, content } = matter(fileContents);
 
     const html = await markdownToHtml(content || "");
-    const excerpt = await markdownToHtml(content.slice(0, EXCERPT_LENGTH));
+    let htmlExcerpt = "";
+    if (html.length > EXCERPT_LENGTH) {
+        let end = html.lastIndexOf(" ", EXCERPT_LENGTH);
+        if (html.indexOf("</a>", end) > end) {
+            end = html.indexOf("</a>", end) + 4;
+        }
+        htmlExcerpt = html.substring(0, end);
+    } else {
+        htmlExcerpt = html;
+    }
 
     return {
         id: id,
         html: html,
         content: content,
-        excerpt: excerpt,
+        excerpt: htmlExcerpt,
         title: data.title,
         date: data.date,
         author: data.author,
+        headerImage: data.headerImage,
     }
 }
 

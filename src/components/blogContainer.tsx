@@ -1,34 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-
 import { BlogData } from '@/interfaces/blog';
-
+import { SMALL_DEVICE_MAX_WIDTH, MED_DEVICE_MAX_WIDTH } from '@/components/deviceConstants';
 
 const StyledContainer = styled.div`
-    width: 50%;
-    @media (max-width: 768px) {
-        width: 65%;
-    }
-    margin: 0 auto;
+    width: 100%;
     text-align: left;
-    font-size: 1.25rem;
+    font-size: 18px;
+    background-color: #1e1e1e;
 
-    
     a {
         text-decoration: none;
-        color: #000;
+        color: #00ff00;
 
         :visited {
-            color: #000;
+            color: #00ff00;
         }
 
         :hover {
-            color: #b89ea3;
-        }
-    
-        :visited:hover {
-            color: #b89ea3;
+            color: #ffffff;
         }
     }
 
@@ -37,28 +28,34 @@ const StyledContainer = styled.div`
             text-decoration: underline;
         }
     }
-`
+`;
 
-const StyledLine = styled.hr`
-    border: none;
-    height: 1px;
-    background-color: #000;
-`
+const Separator = styled.div`
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #00ff00;
+    border-bottom: 1px solid #00ff00;
+    padding: 0.5rem 0;
+    color: #00ff00;
+`;
 
-const BlogContainer = (data: BlogData) => {
-    const date = new Date(data.date);
+const BlogContainer = (post: BlogData) => {
+    const date = new Date(post.date);
     const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
 
     return (
-            <StyledContainer>
-                <Link href={`/blog/${data.id}`}>
-                    <h1>{data.title}</h1>
-                </Link>
-                {formattedDate}
-                <div dangerouslySetInnerHTML={{__html: data.excerpt}}/>
-                <StyledLine/>
-            </StyledContainer>
-    )
-}
+        <StyledContainer>
+            <img src={post.headerImage} alt={post.title} style={{ width: '100%', height: 'auto' }} />
+            <Link href={`/blog/${post.id}`}>
+                <h1>{post.title}</h1>
+            </Link>
+            {formattedDate}
+            <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+            <Separator>
+                BLOG POST TERMINATED
+            </Separator>
+        </StyledContainer>
+    );
+};
 
-export default BlogContainer
+export default BlogContainer;

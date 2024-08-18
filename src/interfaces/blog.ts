@@ -6,4 +6,5 @@ export type BlogData = {
     title: string,
     date: string,
     author: string,
+    headerImage: string,
 };

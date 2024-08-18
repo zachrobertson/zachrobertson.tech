@@ -63,11 +63,6 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
-"@fontsource/oswald@^5.0.18":
-  version "5.0.18"
-  resolved "https://registry.yarnpkg.com/@fontsource/oswald/-/oswald-5.0.18.tgz#3eb1b79fd53dfc931332e7e27dabb42b5e9a7cf0"
-  integrity sha512-aOOszKjb1GZGlAgCk4BsOx/r/235jTtKvkd85PypHJCFWf/a0Hf4bWMq17XhjFghICrK30wV2TNAAAFaoPggMQ==
-
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.14"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.14.tgz#d78e481a039f7566ecc9660b4ea7fe6b1fec442b"

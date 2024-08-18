@@ -1,48 +1,33 @@
 import React from "react";
-import Image from "next/image.js";
 import styled from 'styled-components';
 
 import { getAllBlogs } from "@/lib/api";
 import Layout from "@/components/layout";
 import { BlogData } from '@/interfaces/blog';
-import BlogContainer from "@/components/blogContainer";
-
+import BlogGrid from "@/components/blogGrid";
 
 const TitleContainer = styled.div`
     display: flex;
-    width: 50%;
-    margin: 0 auto;
     justify-content: left;
-`
+    flex-direction: column;
+`;
 
 const TitleParagraph = styled.div`
-    margin-top: 0;
-    padding-left: 1rem;
     align-content: center;
     font-size: 1.25rem;
     display: inline-block;
-    width: 100%;
-
-    span {
-        display: inline-block;
-    }
+    height: auto;
+    line-height: 1.5;
 
     div {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 2rem;
-        margin-bottom: 1rem;
     }
+`;
 
-    a {
-        padding: 0 1rem 0 0;
-        color: #000000;
-
-        :visited {
-            color: #000000;
-        }
-    }
-`
+const SectionHeader = styled.div`
+    font-size: 25px;
+`;
 
 export async function getStaticProps() {
     const blogData = await getAllBlogs();
@@ -57,39 +42,24 @@ type IndexProps = {
     allMarkdownData: BlogData[];
 };
 
-// markup
-export default function IndexPage (props: IndexProps) {
-    const Posts = props.allMarkdownData.map((post) => {
-        return <BlogContainer {...post} key={post.id} />
-    });
+export default function IndexPage (props: IndexProps) {   
+    const firstSixPosts = props.allMarkdownData.slice(0, 6);
 
     return (
         <Layout>
             <TitleContainer>
-                <Image
-                    src='/profile.jpg'
-                    alt='profile picture'
-                    width={75}
-                    height={75}
-                    style={{
-                        display: 'inline-block',
-                        width: '75px',
-                        height: '75px',
-                        borderRadius: '50%',
-                        border: '1px solid black',
-                        background: 'transparent'
-                    }}
-                />
                 <TitleParagraph>
-                    <span>
-                        This is my blog, here I write about stuff.
-                        <br/>
-                        Mostly AI and Data Science.
-                        <br/>
-                    </span>
+                    &gt; I am Zach Robertson, I have a degree in physics and currently work as an Aerospace Software Engineer.
+                    <br/>
+                    &gt; I like building things, like this website. My area of expertise is not in frontend design, that's why this website looks the way it does.
+                    <br/>
+                    &gt; My goal in life is to build Jarvis from IronMan, maybe I'll write about it here if I can find the motivation.
+                    <br />
+                    &gt; Oh and I love to ride my bike, and working on my bike. I'll write about that sometimes as well.
                 </TitleParagraph>
             </TitleContainer>
-            {Posts}
+            <SectionHeader>BLOGS</SectionHeader>
+            <BlogGrid posts={firstSixPosts} />
         </Layout>
     )
 };

@@ -9,43 +9,47 @@ const BlogContainer = styled.div`
     @media (max-width: 768px) {
         width: 70%;
     }
-    margin: 0 auto;
+
+    background-color: #1e1e1e;
+    border: 1px solid #00ff00;
+    padding: 1rem;
 
     img {
         width: 100%;
     }
 
     div {
-
         a {
-            color: #000;
+            color: #00ff00;
 
             :visited {
-                color: #000;
+                color: #00ff00;
             }
 
             :visited:hover {
-                color: #000;
+                color: #ffffff;
             }
 
             :hover {
-                color: #000;
+                color: #ffffff;
             }
         }
         pre {
             code {
-
                 display: block;
                 width: 50%;
+                background-color: #1e1e1e;
+                color: #00ff00;
+                border: 1px solid #00ff00;
+                padding: 0.5rem;
             }
         }
     }
-`
-
+`;
 
 const BlogTitle = styled.h2`
     text-align: left;
-`
+`;
 
 function BlogTemplate(data: BlogData) {
     const date = new Date(data.date);
@@ -63,5 +67,4 @@ function BlogTemplate(data: BlogData) {
         </Layout>
     )
 }
-
 export default BlogTemplate;

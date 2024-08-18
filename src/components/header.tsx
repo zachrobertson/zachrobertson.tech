@@ -1,91 +1,120 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
+import { useRouter } from 'next/router';
+import styled, { keyframes } from 'styled-components';
 
-const homeFontSize = `1.75rem`
-const listItemFontSize = `1.25rem`
+import { SMALL_DEVICE_MAX_WIDTH } from '@/components/deviceConstants';
 
-const StyledHeader = styled.div`
-    height: 12.5vh;
+const listItemFontSize = `2rem`;
 
-    ul {
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        padding: 0;
-        padding-top: 5vh;
-    }
-`
-
-const StyledListItem = styled.li`
+const ReplPrompt = styled.span`
+    color: #00ff00;
     font-size : ${listItemFontSize};
     justify-content: center;
-    list-style-type: none; /* Remove bullet points from list */
+    list-style-type: none;
+    font-weight: bold;
+`;
+
+const blink = keyframes`
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+`;
+
+const Cursor = styled.div`
+    width: 1ch;
+    height: 1.25em;
+    background-color: #00ff00;
+    animation: ${blink} 1s step-end infinite;
+    display: none; /* Default to not displaying */
+
+    @media (max-width: ${SMALL_DEVICE_MAX_WIDTH}px) {
+        display: block; /* Display by default on small devices */
+    }
+`;
+
+const StyledHeader = styled.div<{ $isUlVisible: boolean }>`
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+
+    ul {
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: row;
+
+        @media (max-width: ${SMALL_DEVICE_MAX_WIDTH}px) {
+            display: ${({ $isUlVisible }) => ($isUlVisible ? 'flex' : 'none')};
+            flex-direction: ${({ $isUlVisible }) => ($isUlVisible ? 'column' : 'row')};
+        }
+    }
+
+    @media (max-width: ${SMALL_DEVICE_MAX_WIDTH}px) {
+        &:hover ${Cursor} {
+            display: ${({ $isUlVisible }) => ($isUlVisible ? 'none' : 'block')};
+        }
+    }
+`;
+
+const StyledListItem = styled.li<{ $isActive: boolean }>`
+    font-size : ${listItemFontSize};
+    justify-content: center;
+    list-style-type: none;
+    font-weight: ${({ $isActive }) => ($isActive ? 'bold' : 'normal')};
 
     a {
         text-decoration: none;
         justify-content: space-evenly;
         padding: 5px;
-        color: #b89ea3;
+        color: #00ff00;
 
         :hover {
-            color: #000000;
+            color: #ffffff;
+            text-decoration: underline;
         }
 
         :visited {
-            color: #b89ea3;
-        }
-
-        :visited:hover {
-            color: #000000;
-        }
-`
-
-const HomeAccentedTitle = styled.li`
-    font-size: ${homeFontSize};
-    font-weight: bold;
-    list-style-type: none; /* Remove bullet points from list */
-    
-    a {
-        text-decoration: none;
-        color: #000000;
-        
-        :visited {
-            color: #000000;
-        }
-
-        :visited:hover {
-            color: #b89ea3;
-        }
-
-        :hover {
-            color: #b89ea3;
+            color: #00ff00;
         }
     }
-`
+`;
 
 function Header() {
+    const router = useRouter();
+    const [$isUlVisible, set$isUlVisible] = useState(false);
+
+    const handleMouseEnter = () => {
+        set$isUlVisible(true);
+    };
+
+    const handleMouseLeave = () => {
+        set$isUlVisible(false);
+    };
+
     return (
-        <StyledHeader>
+        <StyledHeader $isUlVisible={$isUlVisible} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <ReplPrompt>&gt;&gt;&gt;</ReplPrompt>
+            {!$isUlVisible && <Cursor />}
             <ul>
-                <HomeAccentedTitle>
+                <StyledListItem $isActive={router.pathname === "/"}>
                     <Link href='/'>
                         ZACHROBERTSON.tech
                     </Link>
-                </HomeAccentedTitle>
-                <StyledListItem key="BLOG">
-                    <Link href="/blog">
-                        BLOG
+                </StyledListItem>
+                <StyledListItem $isActive={router.pathname === "/blogs"}>
+                    <Link href="/blogs">
+                        BLOGS
                     </Link>
                 </StyledListItem>
-                <StyledListItem key="ABOUT">
+                <StyledListItem $isActive={router.pathname === "/about"}>
                     <Link href="/about">
                         ABOUT
                     </Link>
                 </StyledListItem>
             </ul>
         </StyledHeader>
-    )
+    );
 }
 
-export default Header
+export default Header;

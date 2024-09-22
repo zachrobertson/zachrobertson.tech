@@ -3,49 +3,29 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const StyledFooter = styled.div`
-    width: 100%;
-    flex-shrink: 0;
+    flex: 0;
     text-align: center;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
     font-size: 1rem;
-    background-color: #1e1e1e;
-
+    margin: 1rem 0 1rem 0;
     a {
-        color: #00ff00;
-
-        :visited {
-            color: #00ff00;
-        }
-
-        span {
-            margin: 0 1rem;
-        }
+        margin: 1rem;
     }
 `;
 
 const Footer = () => {
     return (
         <StyledFooter>
-            <Link href='https://github.com/zachrobertson'>
-                <span>
-                    GitHub
-                </span>
+            <Link href='https://github.com/zachrobertson' target="_blank" rel='noopener noreferrer'>
+                GitHub
             </Link>
-            <Link href='https://www.linkedin.com/in/zachrobertson-tech/'>
-                <span>
-                    LinkedIn
-                </span>
+            <Link href='https://www.linkedin.com/in/zachrobertson-tech/' target="_blank" rel='noopener noreferrer'>
+                LinkedIn
             </Link>
-            <Link href='https://twitter.com/ZachRTech'>
-                <span>
-                    Twitter
-                </span>
+            <Link href='https://twitter.com/ZachRTech' target="_blank" rel='noopener noreferrer'>
+                Twitter
             </Link>
-            <Link href='/rss'>
-                <span>
-                    RSS
-                </span>
+            <Link href='/api/rss/feed'>
+                RSS
             </Link>
         </StyledFooter>
     )

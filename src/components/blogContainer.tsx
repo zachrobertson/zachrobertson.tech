@@ -1,25 +1,31 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import StravaGraph from './stravaGraph';
 import { BlogData } from '@/interfaces/blog';
-import { SMALL_DEVICE_MAX_WIDTH, MED_DEVICE_MAX_WIDTH } from '@/components/deviceConstants';
 
 const StyledContainer = styled.div`
     width: 100%;
     text-align: left;
     font-size: 18px;
-    background-color: #1e1e1e;
+
+    img {
+        width: 100%;
+        height: 250px; /* Set a fixed height */
+        object-fit: cover; /* Maintain aspect ratio and cover the area */
+        display: block;
+        margin: 10px auto;
+    }
 
     a {
         text-decoration: none;
-        color: #00ff00;
 
         :visited {
-            color: #00ff00;
+            color: #000000;
         }
 
         :hover {
-            color: #ffffff;
+            color: #000000;
         }
     }
 
@@ -33,10 +39,9 @@ const StyledContainer = styled.div`
 const Separator = styled.div`
     width: 100%;
     text-align: center;
-    border-top: 1px solid #00ff00;
-    border-bottom: 1px solid #00ff00;
-    padding: 0.5rem 0;
-    color: #00ff00;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 0.5rem;
 `;
 
 const BlogContainer = (post: BlogData) => {
@@ -45,7 +50,11 @@ const BlogContainer = (post: BlogData) => {
 
     return (
         <StyledContainer>
-            <img src={post.headerImage} alt={post.title} style={{ width: '100%', height: 'auto' }} />
+            {(post.headerImage === "stravaGraph" && post.stravaData !== undefined) ? (
+                <StravaGraph data={post.stravaData}/>
+            ) : (
+                <img src={post.headerImage} alt={post.title} />
+            )}
             <Link href={`/blog/${post.id}`}>
                 <h1>{post.title}</h1>
             </Link>

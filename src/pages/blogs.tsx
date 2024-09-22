@@ -10,6 +10,7 @@ type BlogProps = {
 
 export async function getStaticProps() {
     const blogData = await getAllBlogs();
+
     return {
         props: {
             allMarkdownData: blogData

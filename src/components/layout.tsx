@@ -8,19 +8,19 @@ import { SMALL_DEVICE_MAX_WIDTH, MED_DEVICE_MAX_WIDTH } from '@/components/devic
 
 
 const Global = createGlobalStyle`
-    body {
-        font-family: 'Monospace 11';
-        font-size: 100%;
+    html, body {
         height: 100%;
+        width: 100%;
+    }
+
+    body {
         display: flex;
         flex-direction: column;
-        background-color: #1e1e1e;
-        color: #00ff00;
-        margin-top: 0;
         margin-left: auto;
         margin-right: auto;
         padding-left: 1.25rem;
         padding-right: 1.25rem;
+        font-size: 100%;
 
         @media (min-width: ${MED_DEVICE_MAX_WIDTH+1}px) {
             width: 1024px;
@@ -31,22 +31,21 @@ const Global = createGlobalStyle`
         }
 
         @media (max-width: ${SMALL_DEVICE_MAX_WIDTH}px) {
-            width: 100%
+            width: 80%
         }
     }
 
     a {
-        color: #00ff00;
+        color: #000000;
         text-decoration: none;
     }
 
     a:hover {
-        color: #ffffff;
+        color: #000000;
     }
 
     ::selection {
-        background: #00ff00;
-        color: #1e1e1e;
+        color: #000000;
     }
 `;
 

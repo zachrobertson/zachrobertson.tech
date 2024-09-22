@@ -10,6 +10,7 @@ const MAX_COLUMN_COUNT = 2;
 const Grid = styled.div`
     display: grid;
     justify: space-between;
+    gap: 2rem;
 
     @media (min-width: ${MED_DEVICE_MAX_WIDTH+1}px) {
         width: 1024px;

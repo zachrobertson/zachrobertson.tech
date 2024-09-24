@@ -8,9 +8,9 @@ import { fetchAthleteActivities } from "@/lib/stravaApiRequests";
 import { StravaActivityRequestParams, StravaWeeklyStats } from "@/interfaces/strava";
 
 const EXCERPT_LENGTH = 500;
-const STRAVA_DATA_FILE = "/tmp/stravaData.json" // Use /tmp directory to allow read/write operations during runtime on vercel
 const BLOGS_DIRECTORY = path.join(process.cwd(), "_blogs");
 const TWENTY_FOUR_WEEKS_IN_SECONDS = 48 * 7 * 24 * 60 * 60;
+export const STRAVA_DATA_FILE = "/tmp/stravaData.json" // Use /tmp directory to allow read/write operations during runtime on vercel
 
 export function getBlogIds() {
     return fs.readdirSync(BLOGS_DIRECTORY).map(file => file.replace(/\.md$/, ''));

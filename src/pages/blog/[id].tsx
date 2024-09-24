@@ -2,8 +2,8 @@ import fs from 'fs';
 import { BlogData } from '@/interfaces/blog';
 import markdownToHtml from "@/lib/markdownToHtml";
 import BlogTemplate from "@/components/blogTemplate";
-import { getBlogById, getBlogIds } from "@/lib/api";
 import { StravaWeeklyStats } from '@/interfaces/strava';
+import { getBlogById, getBlogIds, STRAVA_DATA_FILE } from "@/lib/api";
 
 type Params = {
     params: {
@@ -16,7 +16,7 @@ export async function getStaticProps({ params }: Params): Promise<{props: BlogDa
     const content = await markdownToHtml(blog.content || "");
 
     if (blog.headerImage == "stravaGraph") {
-        const rawData: StravaWeeklyStats = JSON.parse(fs.readFileSync("stravaData.json", 'utf-8'));
+        const rawData: StravaWeeklyStats = JSON.parse(fs.readFileSync(STRAVA_DATA_FILE, 'utf-8'));
         const weeks = Object.keys(rawData)
             .map(key => {
                 const [year, week] = key.split('-W').map(Number);

@@ -7,8 +7,10 @@ import markdownToHtml from "./markdownToHtml";
 import { fetchAthleteActivities } from "@/lib/stravaApiRequests";
 import { StravaActivityRequestParams, StravaWeeklyStats } from "@/interfaces/strava";
 
-const BLOGS_DIRECTORY = path.join(process.cwd(), "_blogs");
 const EXCERPT_LENGTH = 500;
+const STRAVA_DATA_FILE = "/tmp/stravaData.json" // Use /tmp directory to allow read/write operations during runtime on vercel
+const BLOGS_DIRECTORY = path.join(process.cwd(), "_blogs");
+const TWENTY_FOUR_WEEKS_IN_SECONDS = 48 * 7 * 24 * 60 * 60;
 
 export function getBlogIds() {
     return fs.readdirSync(BLOGS_DIRECTORY).map(file => file.replace(/\.md$/, ''));
@@ -58,8 +60,6 @@ function _truncateHTML(html: string, length: number): string {
     return truncatedHtml;
 }
 
-const TWENTY_FOUR_WEEKS_IN_SECONDS = 48 * 7 * 24 * 60 * 60;
-
 function getWeek(date: Date): string {
     date.setHours(0, 0, 0, 0);
     // Thursday in current week decides the year.
@@ -75,8 +75,7 @@ function getWeek(date: Date): string {
 
 
 function saveDataToFile(data: StravaWeeklyStats): void {
-    const filePath = path.join(process.cwd(), 'stravaData.json');
-    fs.writeFileSync(filePath, JSON.stringify(data));
+    fs.writeFileSync(STRAVA_DATA_FILE, JSON.stringify(data));
 }
 
 export async function generateStravaDataFile() {
@@ -118,11 +117,11 @@ export async function getBlogById(id: string): Promise<BlogData> {
 
     if (data.headerImage == "stravaGraph") {
 
-        if (!fs.existsSync("stravaData.json")) {
+        if (!fs.existsSync(STRAVA_DATA_FILE)) {
             await generateStravaDataFile();
         }
     
-        const rawData: StravaWeeklyStats = JSON.parse(fs.readFileSync("stravaData.json", 'utf-8'));
+        const rawData: StravaWeeklyStats = JSON.parse(fs.readFileSync(STRAVA_DATA_FILE, 'utf-8'));
     
         const weeks = Object.keys(rawData)
             .map(key => {

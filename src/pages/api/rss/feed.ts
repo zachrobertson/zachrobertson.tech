@@ -3,11 +3,12 @@ import { BlogData } from '@/interfaces/blog';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function GET(request: NextApiRequest, response: NextApiResponse) {
+  const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://zachrobertson.tech';
   const blogs: BlogData[] = await getAllBlogs();
   const items = blogs.map(blog => `
     <item>
       <title>${blog.title}</title>
-      <link>https://localhost:3000/blog/${blog.id}</link>
+      <link>${baseUrl}/blog/${blog.id}</link>
       <description>${blog.excerpt}</description>
       <pubDate>${new Date(blog.date).toUTCString()}</pubDate>
       <author>${blog.author}</author>
@@ -17,9 +18,6 @@ export default async function GET(request: NextApiRequest, response: NextApiResp
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-      <title>My Blog</title>
-      <link>https://localhost:3000</link>
-      <description>Latest blog posts</description>
       ${items}
     </channel>
   </rss>`;

@@ -11,6 +11,8 @@ const Global = createGlobalStyle`
     html, body {
         height: 100%;
         width: 100%;
+        background-color: black;
+        color: white;
     }
 
     body {
@@ -36,16 +38,16 @@ const Global = createGlobalStyle`
     }
 
     a {
-        color: #000000;
+        text-decoration: none;
+    }
+    
+    a:hover {
         text-decoration: none;
     }
 
-    a:hover {
-        color: #000000;
-    }
-
     ::selection {
-        color: #000000;
+        background-color: rgba(0, 255, 0, 0.5);
+        color: #00FF00;
     }
 `;
 

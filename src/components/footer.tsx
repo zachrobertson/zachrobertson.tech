@@ -7,8 +7,14 @@ const StyledFooter = styled.div`
     text-align: center;
     font-size: 1rem;
     margin: 1rem 0 1rem 0;
+
+    :hover {
+        text-decoration: underline;
+    }
+
     a {
         margin: 1rem;
+        color: white;
     }
 `;
 

@@ -22,19 +22,14 @@ const StyledListItem = styled.li<{ $isActive: boolean }>`
     font-weight: ${({ $isActive }) => ($isActive ? 'bold' : 'normal')};
     padding-right: 1rem;
 
+    :hover {
+        text-decoration: underline;
+        color: white;
+    }
+
     a {
-        text-decoration: none;
         justify-content: space-evenly;
-        color: #000000;
-
-        :hover {
-            color: #000000;
-            text-decoration: underline;
-        }
-
-        :visited {
-            color: #000000;
-        }
+        color: white;
     }
 `;
 

@@ -1,11 +1,11 @@
 ---
-title: "Canyon Grizl CF CL 7 1by"
+title: "Canyon Grizl CF SL 7 Review"
 date: "2024-08-11"
 author: "Zach Robertson"
 headerImage: "/blog/images/canyon_grizl_header.jpg"
 ---
 
-The Cayon Grizl CF CL is Canyons entry level carbon "Adventure" gravel bike, in contrast to the Grail which is race oriented bike. The "Adventure" monicker means that the bikes geometry is less aggressive and the frame is packed with mounting points for bags and other accessories. The bike comes stock with GRX 11-speed mechanic groupset, an iridium dropper post, G1800 DT Swiss Alloy rims wrapped in Maxis Rambler EVO 45mm tires. As you can see from the image above, my bike is anything but stock, let me list the things I've upgraded and accessories I use on most of my ride.
+The Cayon Grizl CF SL is Canyons entry level carbon "Adventure" gravel bike, in contrast to the Grail which is race oriented bike. The "Adventure" monicker means that the bikes geometry is less aggressive and the frame is packed with mounting points for bags and other accessories. The bike comes stock with GRX 11-speed mechanic groupset (in 2022, the newer version have the GRX 12 speed or SRAM Force AXS), an iridium dropper post, G1800 DT Swiss Alloy rims wrapped in Maxis Rambler EVO 45mm tires. As you can see from the image above, my bike is anything but stock, let me list the things I've upgraded and accessories I use on most of my rides.
 
 ## Upgrades
 
@@ -44,15 +44,14 @@ While I do enjoy this bike a lot, many of the pain points are simply a consequen
 
 For me when I was able to find a stem to fit the 1-1/4" steerer tube I did not realize it was about 1mm shorter than the stock stem and as such the spacers were not tall enough to make good contact with the headset top cap, meaning you could crank down on the plastic top cap and break it very easily (which is what I did). Then you are left with two options for replacements, one is to reach out to Canyon and pay them for the POS plastic cap or to find a third-party that sells them (there are not many of these, I suggest kapz.com).
 
-The last issue I want to talk about is the wheels and tires. If you are trying to go fast on this bike the best thing you can do it replace these. The bike comes stock with DT Swiss Alloy rims and these are HEAVY, the difference between them and a _relatively_ inexspensive carbon rimset is night and day. Combine the alloy rims with the slowest tires I've ever ridden, the Maxis Rambler EVO and you are in for a bad time. If you do have this bike do youself a favor and spend the extra $200 to put a decent set of tires on it, even if you don't upgrade the rims. I would suggest the 45 Continental Terra Speed or the 50mm Continental Terra Hardpack. Check out [bicyclerollingresistance.com](https://www.bicyclerollingresistance.com/) if you want to know how I pick fast tires.
-
+The last issue I want to talk about is the wheels and tires. If you are trying to go fast on this bike the best thing you can do it replace these. The bike comes stock with DT Swiss Alloy rims and these are HEAVY, the difference between them and a _relatively_ inexpensive carbon rims is night and day. Combine the alloy rims with the slowest tires I've ever ridden, the Maxis Rambler EVO and you are in for a bad time. If you do have this bike do yourself a favor and spend the extra $200 to put a decent set of tires on it, even if you don't upgrade the rims. I would suggest the 45 Continental Terra Speed or the 50mm Continental Terra Hardpack. Check out [bicyclerollingresistance.com](https://www.bicyclerollingresistance.com/) if you want to know how I pick fast tires.
 
 ## The Ugly
 
-I think the way Canyon has made some many parts proriatary is frustrating and not in the spirit of right-to-repair and as a consumer who works on their own bike this has been an eye opening experience. I know in the future if I do buy from a direct-to-consumer brand I will pay much more attention to the standards used and make sure it's something I can live with.
+I think the way Canyon has made some many parts proprietary is frustrating and not in the spirit of right-to-repair and as a consumer who works on their own bike this has been an eye opening experience. I know in the future if I do buy from a direct-to-consumer brand I will pay much more attention to the standards used and make sure it's something I can live with.
 
 The only other negative on the bike for me has been the paint. I do not like the matte paint as it stains super easily. Everything from sealant, chain oil, dirt. Eventually it will come clean but it takes so much more effort to keep this type of paint clean than the gloss finished bikes I've owned.
 
 ## Should you buy this bike?
 
-For a gravel adventure bike this is one of the best price-to-performance bikes you can purchase, but it's not without negatives. I would be very cautionous if you are someone who likes to play around with different components on your bike, specifically handlebars and stems. If you think the stock 80mm stem will work for you (or the Zipp Service Course SL has a size that is correct for you) then you will be set, but keep in mind finding a one-piece bar and stem is virtually impossible and you are severely limited on the length and angle of the stems you can purchase.
+For a gravel adventure bike this is one of the best price-to-performance bikes you can purchase, but it's not without negatives. I would be very cautions if you are someone who likes to play around with different components on your bike, or if you are someone who is prone to loose/breaking parts on your bike. With Canyons direct-to-consume model all spare parts need to be purchased through them. So far I have had to buy two spare parts, in under a year of owning the bike, and it cost around ~$90 for both with shipping (and those were for cable grommets and the steerer tube top cap).

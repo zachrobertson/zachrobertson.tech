@@ -25,6 +25,8 @@ const BlogContainer = styled.div`
     }
 
     div {
+        text-align: left;
+
         a {
             color: #000000;
 

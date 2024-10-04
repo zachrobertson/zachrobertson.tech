@@ -9,22 +9,21 @@ const StyledContainer = styled.div`
     width: 100%;
     text-align: left;
     font-size: 18px;
+    color: white;
 
     a {
+        color: white;
         text-decoration: none;
 
-        :visited {
-            color: #000000;
-        }
-
         :hover {
-            color: #000000;
+            color: white;
+            text-decoration: underline;
         }
     }
 
     p {
         a {
-            text-decoration: underline;
+            text-decoration: none;
         }
     }
 `;
@@ -40,8 +39,7 @@ const BlogHeaderImage = styled(Image)`
 const Separator = styled.div`
     width: 100%;
     text-align: center;
-    border-top: 1px solid #000000;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid;
     padding: 0.5rem;
 `;
 
@@ -65,9 +63,7 @@ const BlogContainer = (post: BlogData) => {
             </Link>
             {formattedDate}
             <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-            <Separator>
-                BLOG POST TERMINATED
-            </Separator>
+            <Separator/>
         </StyledContainer>
     );
 };

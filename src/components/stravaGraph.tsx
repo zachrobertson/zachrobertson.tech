@@ -8,7 +8,6 @@ export default function StravaGraph({ data }: { data: { distanceData: { x: strin
     return (
         <StravaGraphContainer>
             <svg viewBox="0 0 400 155" strokeDasharray="4">
-                <VictoryLabel text="STRAVA DATA" x={200} y={30} textAnchor="middle" style={{ fontSize: "10px" }} />
                 <VictoryChart
                     standalone={false}
                     width={400}
@@ -21,8 +20,7 @@ export default function StravaGraph({ data }: { data: { distanceData: { x: strin
                 >
                     <VictoryAxis tickFormat={(x) => x} style={{
                         axis: { stroke: "transparent" },
-                        ticks: { stroke: "transparent" },
-                        tickLabels: { fill: "#00ff00" } // Adjust color as needed
+                        ticks: { stroke: "transparent" }
                     }}/>
                     <VictoryAxis dependentAxis domain={[0, data.maxDistance]} tickFormat={(t: number) => `${t} mi`} style={{
                         axis: { stroke: "transparent" },
@@ -44,7 +42,6 @@ export default function StravaGraph({ data }: { data: { distanceData: { x: strin
                     <VictoryAxis tickFormat={(x) => x} style={{
                         axis: { stroke: "transparent" },
                         ticks: { stroke: "transparent" },
-                        tickLabels: { fill: "#00ff00" } // Adjust color as needed
                     }}/>
                     <VictoryAxis dependentAxis domain={[0, data.maxElevation]} tickFormat={(t: number) => `${t} ft`} orientation="right" style={{
                         axis: { stroke: "transparent" },

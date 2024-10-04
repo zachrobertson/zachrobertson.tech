@@ -35,10 +35,10 @@ export default function IndexPage (props: IndexProps) {
     return (
         <Layout pageName="index">
             <AboutSection>
-                Post physics student working an as aerospace software engineer<br/>
+                Post physics student working as an aerospace software engineer<br/>
                 Interested in the intersection of hardware and software<br/>
                 Obsessed with bikes<br/>
-                Read about it here.
+                Read about it here
             </AboutSection>
             <SectionTitle>BLOGS</SectionTitle>
             <BlogGrid posts={firstSixPosts} />

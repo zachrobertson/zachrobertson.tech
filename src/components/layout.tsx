@@ -56,15 +56,16 @@ const StyledLayout = styled.div`
 `;
 
 type LayoutProps = {
+    pageName: string;
     children: React.ReactNode;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, pageName }) => {
     return (
         <>
             <Global/>
             <StyledLayout>
-                <Header/>
+                <Header pageName={pageName} />
                 {children}
                 <Footer/>
             </StyledLayout>

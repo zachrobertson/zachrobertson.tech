@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
-import StravaGraph from './stravaGraph';
 import { BlogData } from '@/interfaces/blog';
 
 const StyledContainer = styled.div`
@@ -31,10 +31,11 @@ const StyledContainer = styled.div`
 
 const BlogHeaderImage = styled(Image)`
     width: 100%;
+    height: auto;
     object-fit: cover;
     display: block;
     margin: 10px auto;
-`
+`;
 
 const Separator = styled.div`
     width: 100%;
@@ -43,6 +44,10 @@ const Separator = styled.div`
     border-bottom: 1px solid #000000;
     padding: 0.5rem;
 `;
+
+const StravaGraph = dynamic(() => import('../components/stravaGraph'), {
+    ssr: false,
+});
 
 const BlogContainer = (post: BlogData) => {
     const date = new Date(post.date);
@@ -53,7 +58,7 @@ const BlogContainer = (post: BlogData) => {
             {(post.headerImage === "stravaGraph" && post.stravaData !== undefined) ? (
                 <StravaGraph data={post.stravaData}/>
             ) : (
-                <BlogHeaderImage src={post.headerImage} alt={post.title} width={800} height={250}/>
+                <BlogHeaderImage src={post.headerImage} alt={post.title} width={800} height={250} priority/>
             )}
             <Link href={`/blog/${post.id}`}>
                 <h1>{post.title}</h1>

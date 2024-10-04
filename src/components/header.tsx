@@ -1,9 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-const listItemFontSize = `1.25rem`; // Lowered font size
 
 const StyledHeader = styled.div`
     display: flex;
@@ -19,7 +17,6 @@ const StyledHeader = styled.div`
 `;
 
 const StyledListItem = styled.li<{ $isActive: boolean }>`
-    font-size : ${listItemFontSize}; // Lowered font size
     justify-content: center;
     list-style-type: none;
     font-weight: ${({ $isActive }) => ($isActive ? 'bold' : 'normal')};
@@ -41,23 +38,21 @@ const StyledListItem = styled.li<{ $isActive: boolean }>`
     }
 `;
 
-function Header() {
-    const router = useRouter();
-
+function Header(props: { pageName: string }) {
     return (
         <StyledHeader>
             <ul>
-                <StyledListItem $isActive={router.pathname === "/"}>
+                <StyledListItem key="index" $isActive={props.pageName === "index"}>
                     <Link href='/'>
                         ZACHROBERTSON.tech
                     </Link>
                 </StyledListItem>
-                <StyledListItem $isActive={router.pathname === "/blogs"}>
+                <StyledListItem key="blogs" $isActive={props.pageName === "blogs"}>
                     <Link href="/blogs">
                         BLOGS
                     </Link>
                 </StyledListItem>
-                <StyledListItem $isActive={router.pathname === "/about"}>
+                <StyledListItem key="about" $isActive={props.pageName === "about"}>
                     <Link href="/about">
                         ABOUT
                     </Link>

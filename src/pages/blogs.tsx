@@ -20,7 +20,7 @@ export async function getStaticProps() {
 
 export default function BlogPage (props: BlogProps) {
     return (
-        <Layout>
+        <Layout pageName="blogs">
             <BlogGrid posts={props.allMarkdownData} />
         </Layout>
     );

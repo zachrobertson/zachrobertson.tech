@@ -1,7 +1,7 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
-import StravaGraph from './stravaGraph';
 import Layout from '@/components/layout';
 import { BlogData } from '@/interfaces/blog';
 import { MED_DEVICE_MAX_WIDTH, SMALL_DEVICE_MAX_WIDTH } from './deviceConstants';
@@ -58,6 +58,7 @@ const BlogTitle = styled.h2`
 
 const HeaderImage = styled.img`
     width: 100%;
+    height: auto;
 `;
 
 const AuthorDateContainer = styled.div`
@@ -66,12 +67,16 @@ const AuthorDateContainer = styled.div`
     margin-bottom: 1rem;
 `;
 
+const StravaGraph = dynamic(() => import('../components/stravaGraph'), {
+    ssr: false,
+});
+
 function BlogTemplate(data: BlogData) {
     const date = new Date(data.date);
     const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
 
     return (
-        <Layout>
+        <Layout pageName='blogPage'>
             <BlogTitle>
                 {data.title}
             </BlogTitle>

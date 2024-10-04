@@ -15,7 +15,7 @@ const AboutContainer = styled.div`
 
 export default function AboutPage() {
     return (
-        <Layout>
+        <Layout pageName='about'>
             <AboutContainer>
                 <span>
                     I am Zach Robertson, currently I live in St. Louis Missouri with my lovely partner Emily and dog Stella.

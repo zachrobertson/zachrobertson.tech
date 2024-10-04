@@ -33,7 +33,7 @@ export default function IndexPage (props: IndexProps) {
     const firstSixPosts = props.allMarkdownData.slice(0, 6);
 
     return (
-        <Layout>
+        <Layout pageName="index">
             <AboutSection>
                 I like to ride bikes. If everything goes to plan, quickly<br/>
                 I work in the Aerospace industry as a software engineer.<br/>

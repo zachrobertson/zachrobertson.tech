@@ -2,15 +2,16 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { Parser } from "htmlparser2";
+
+import kv from "@/lib/vercelKV";
 import { BlogData } from "@/interfaces/blog";
-import markdownToHtml from "./markdownToHtml";
+import markdownToHtml from "@/lib/markdownToHtml";
 import { fetchAthleteActivities } from "@/lib/stravaApiRequests";
 import { StravaActivityRequestParams, StravaWeeklyStats } from "@/interfaces/strava";
 
 const EXCERPT_LENGTH = 500;
 const BLOGS_DIRECTORY = path.join(process.cwd(), "_blogs");
 const TWENTY_FOUR_WEEKS_IN_SECONDS = 48 * 7 * 24 * 60 * 60;
-export const STRAVA_DATA_FILE = "/tmp/stravaData.json" // Use /tmp directory to allow read/write operations during runtime on vercel
 
 export function getBlogIds() {
     return fs.readdirSync(BLOGS_DIRECTORY).map(file => file.replace(/\.md$/, ''));
@@ -74,11 +75,11 @@ function getWeek(date: Date): string {
 }
 
 
-function saveDataToFile(data: StravaWeeklyStats): void {
-    fs.writeFileSync(STRAVA_DATA_FILE, JSON.stringify(data));
+async function saveDataToKV(data: StravaWeeklyStats): Promise<void> {
+    await kv.set('stravaData', JSON.stringify(data));
 }
 
-export async function generateStravaDataFile() {
+export async function generateStravaData() {
     const before = Math.floor(new Date().getTime() / 1000);
     const after = before - TWENTY_FOUR_WEEKS_IN_SECONDS;
     const params: StravaActivityRequestParams = {
@@ -103,7 +104,7 @@ export async function generateStravaDataFile() {
         }
     }
 
-    saveDataToFile(weeklyStats);
+    saveDataToKV(weeklyStats);
 }
 
 export async function getBlogById(id: string): Promise<BlogData> {
@@ -117,12 +118,18 @@ export async function getBlogById(id: string): Promise<BlogData> {
 
     if (data.headerImage == "stravaGraph") {
 
-        if (!fs.existsSync(STRAVA_DATA_FILE)) {
-            await generateStravaDataFile();
+        const kvData: StravaWeeklyStats | null = await kv.get('stravaData');
+        let rawData: StravaWeeklyStats;
+        if (!kvData) {
+            await generateStravaData();
+            rawData = await kv.get('stravaData') ?? {};
+            if (Object.keys(rawData).length === 0) {
+                throw new Error('Failed to generate Strava data');
+            }
+        } else {
+            rawData = kvData;
         }
-    
-        const rawData: StravaWeeklyStats = JSON.parse(fs.readFileSync(STRAVA_DATA_FILE, 'utf-8'));
-    
+
         const weeks = Object.keys(rawData)
             .map(key => {
                 const [year, week] = key.split('-W').map(Number);

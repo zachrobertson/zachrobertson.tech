@@ -119,17 +119,16 @@ export async function getBlogById(id: string): Promise<BlogData> {
     if (data.headerImage == "stravaGraph") {
 
         const kvData: StravaWeeklyStats | null = await kv.get('stravaData');
-        let rawData;
+        let rawData: StravaWeeklyStats;
         if (!kvData) {
             await generateStravaData();
-            rawData = await kv.get('stravaData');
-            if (!rawData) {
+            rawData = await kv.get('stravaData') ?? {};
+            if (Object.keys(rawData).length === 0) {
                 throw new Error('Failed to generate Strava data');
             }
         } else {
             rawData = kvData;
         }
-        rawData = rawData as StravaWeeklyStats;
 
         const weeks = Object.keys(rawData)
             .map(key => {

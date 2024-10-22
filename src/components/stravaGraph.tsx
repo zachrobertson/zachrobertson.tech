@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { VictoryLine, VictoryAxis, VictoryChart, VictoryLabel, VictoryVoronoiContainer } from 'victory';
+import { VictoryLine, VictoryAxis, VictoryChart, VictoryVoronoiContainer } from 'victory';
 
 const StravaGraphContainer = styled.div``;
 
 export default function StravaGraph({ data }: { data: { distanceData: { x: string, y: number }[], maxDistance: number, elevationData: { x: string, y: number }[], maxElevation: number } }) {
+    useEffect(() => {
+        console.log("StravaGraph data updated:", data)
+    }, [data]);
+
     return (
         <StravaGraphContainer>
             <svg viewBox="0 0 400 155" strokeDasharray="4">

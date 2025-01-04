@@ -6,11 +6,5 @@ export interface BlogData {
     title: string,
     date: string,
     author: string,
-    headerImage: string,
-    stravaData?: {
-        distanceData: { x: string, y: number }[],
-        maxDistance: number,
-        elevationData: { x: string, y: number }[],
-        maxElevation: number
-    }
+    headerImage: string
 };

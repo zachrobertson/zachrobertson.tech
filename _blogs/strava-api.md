@@ -2,8 +2,12 @@
 title: "Limitations and Uses of the Strava API v3"
 date: "2024-09-11"
 author: "Zach Robertson"
-headerImage: "stravaGraph"
+headerImage: "/blog/images/strava_header.jpg"
 ---
+
+__Update: 12/31/2024__
+
+__As of late 2024 Strava has decided to restict usage of their data by third parties. The restrictions are so strict I believe the graph that used to be on this blog is no longer allowed. I think this is a hostile move by Strava that damages third party applications that were only given 30 days to comply with the new terms__
 
 I always like to explore the APIs available to websites and services that I use, in this spirit I wrote down my thoughts on the Strava API. Its uses, limitations and pain points I ran into when making a small React component to visualize my elevation and distance metrics over the last 6 months.
 

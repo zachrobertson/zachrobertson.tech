@@ -1,5 +1,4 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
 import Layout from '@/components/layout';
@@ -69,10 +68,6 @@ const AuthorDateContainer = styled.div`
     margin-bottom: 1rem;
 `;
 
-const StravaGraph = dynamic(() => import('../components/stravaGraph'), {
-    ssr: false,
-});
-
 function BlogTemplate(data: BlogData) {
     const date = new Date(data.date);
     const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
@@ -86,11 +81,7 @@ function BlogTemplate(data: BlogData) {
                 <span>{data.author}</span>
                 <span>{formattedDate}</span>
             </AuthorDateContainer>
-            {(data.headerImage === "stravaGraph" && data.stravaData !== undefined) ? (
-                <StravaGraph data={data.stravaData}/>
-            ) : (
-                <HeaderImage src={data.headerImage} alt={data.title} />
-            )}
+            <HeaderImage src={data.headerImage} alt={data.title} />
             <BlogContainer>
                 <div dangerouslySetInnerHTML={{__html: data.html}} />
             </BlogContainer>

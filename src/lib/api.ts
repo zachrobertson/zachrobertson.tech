@@ -74,7 +74,7 @@ export async function getBlogById(id: string): Promise<BlogData> {
         title: data.title,
         date: data.date,
         author: data.author,
-        headerImage: data.headerImage,
+        shortDescription: data.shortDescription
     }
 }
 

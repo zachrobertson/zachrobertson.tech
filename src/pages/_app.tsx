@@ -1,14 +1,13 @@
 import { AppProps } from "next/app";
-import { Roboto } from "next/font/google";
+import { Fira_Code } from "next/font/google";
 
-const roboto = Roboto({
-  weight: "400",
+const firaCode = Fira_Code({
   subsets: ["latin"]
 })
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={roboto.className}>
+    <main className={firaCode.className}>
       <Component {...pageProps} />
     </main>
   );

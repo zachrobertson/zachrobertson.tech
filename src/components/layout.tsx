@@ -13,6 +13,8 @@ const Global = createGlobalStyle`
         width: 100%;
         background-color: black;
         color: white;
+        margin: 0;
+        padding: 0;
     }
 
     body {
@@ -23,6 +25,7 @@ const Global = createGlobalStyle`
         padding-left: 1.25rem;
         padding-right: 1.25rem;
         font-size: 100%;
+        min-height: 100vh;
 
         @media (min-width: ${MED_DEVICE_MAX_WIDTH+1}px) {
             width: 1024px;
@@ -35,6 +38,13 @@ const Global = createGlobalStyle`
         @media (max-width: ${SMALL_DEVICE_MAX_WIDTH}px) {
             width: 80%
         }
+    }
+
+    #__next {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
     }
 
     a {
@@ -55,6 +65,7 @@ const StyledLayout = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 `;
 
 type LayoutProps = {

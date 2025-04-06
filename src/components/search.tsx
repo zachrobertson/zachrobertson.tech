@@ -301,7 +301,7 @@ COPYRIGHT
         </CommandLine>
         {Array.isArray(commandResponse) && commandResponse.length > 0 ? (
           <SearchResultList>
-            <SearchResultHeader>Found {commandResponse.length} results for "{searchQuery}":</SearchResultHeader>
+            <SearchResultHeader>Found {commandResponse.length} results for &quot{searchQuery}&quot:</SearchResultHeader>
             {commandResponse.map((result: SearchResultItem, index: number) => (
               <ResultItem key={index}>
                 <ResultTitle>

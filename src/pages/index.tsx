@@ -25,16 +25,16 @@ const TerminalSection = styled.div`
 `;
 
 // TODO: decide if this is something we want to use, kind of looks tacky
-// const CommandPrompt = styled.div`
-//     color: #00FF00;
-//     font-family: 'Fira Code', monospace;
-//     margin-bottom: 0.5rem;
+const CommandPrompt = styled.div`
+    color: #00FF00;
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 0.5rem;
     
-//     &:before {
-//         content: "zach@zachrobertson:~$ ";
-//         color: #0087D7;
-//     }
-// `;
+    &:before {
+        content: "zach@zachrobertson:~$ ";
+        color: #0087D7;
+    }
+`;
 
 export default function IndexPage (props: IndexProps) {   
     const firstSixPosts = props.allMarkdownData.slice(0, 6);
@@ -42,6 +42,7 @@ export default function IndexPage (props: IndexProps) {
     return (
         <Layout pageName="index">
             <TerminalSection>
+                <CommandPrompt>ls -lat ~/BLOGS</CommandPrompt>
                 <BlogList posts={firstSixPosts} />
             </TerminalSection>
         </Layout>

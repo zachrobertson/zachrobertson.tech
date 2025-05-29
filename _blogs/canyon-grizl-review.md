@@ -2,7 +2,7 @@
 title: "Canyon Grizl CF SL 7 Review"
 date: "2024-08-11"
 author: "Zach Robertson"
-headerImage: "/blog/images/canyon_grizl_header.jpg"
+"shortDescription": "Long term review of the 2022 Canyon Grizl CF SL 7"
 ---
 
 The Cayon Grizl CF SL is Canyons entry level carbon "Adventure" gravel bike, in contrast to the Grail which is race oriented bike. The "Adventure" monicker means that the bikes geometry is less aggressive and the frame is packed with mounting points for bags and other accessories. The bike comes stock with GRX 11-speed mechanic groupset (in 2022, the newer version have the GRX 12 speed or SRAM Force AXS), an iridium dropper post, G1800 DT Swiss Alloy rims wrapped in Maxis Rambler EVO 45mm tires. As you can see from the image above, my bike is anything but stock, let me list the things I've upgraded and accessories I use on most of my rides.

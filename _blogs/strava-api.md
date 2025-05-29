@@ -2,7 +2,7 @@
 title: "Limitations and Uses of the Strava API v3"
 date: "2024-09-11"
 author: "Zach Robertson"
-headerImage: "/blog/images/strava_header.jpg"
+"shortDescription": "Overview of the strava API"
 ---
 
 __Update: 12/31/2024__

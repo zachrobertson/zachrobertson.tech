@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { getAllBlogs } from "@/lib/api";
 import Layout from "@/components/layout";
 import { BlogData } from '@/interfaces/blog';
-import BlogGrid from "@/components/blogGrid";
-
+import BlogList from "@/components/blogList";
 
 export async function getStaticProps(): Promise<{ props: IndexProps }> {
     const blogData = await getAllBlogs();
@@ -21,27 +20,31 @@ type IndexProps = {
     allMarkdownData: BlogData[];
 };
 
-const AboutSection = styled.span`
-    font-size: 20px;
-`
+const TerminalSection = styled.div`
+    margin-bottom: 2rem;
+`;
 
-const SectionTitle = styled.h2`
-    font-size: 35px;
-`
+// TODO: decide if this is something we want to use, kind of looks tacky
+const CommandPrompt = styled.div`
+    color: #00FF00;
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 0.5rem;
+    
+    &:before {
+        content: "zach@zachrobertson:~$ ";
+        color: #0087D7;
+    }
+`;
 
 export default function IndexPage (props: IndexProps) {   
     const firstSixPosts = props.allMarkdownData.slice(0, 6);
 
     return (
         <Layout pageName="index">
-            <AboutSection>
-                Post physics student working as an aerospace software engineer<br/>
-                Interested in the intersection of hardware and software<br/>
-                Obsessed with bikes<br/>
-                Read about it here
-            </AboutSection>
-            <SectionTitle>BLOGS</SectionTitle>
-            <BlogGrid posts={firstSixPosts} />
+            <TerminalSection>
+                <CommandPrompt>ls -lat ~/BLOGS</CommandPrompt>
+                <BlogList posts={firstSixPosts} />
+            </TerminalSection>
         </Layout>
     )
 };

@@ -6,5 +6,5 @@ export interface BlogData {
     title: string,
     date: string,
     author: string,
-    headerImage: string
-};
+    shortDescription: string
+}

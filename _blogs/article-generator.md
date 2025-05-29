@@ -2,7 +2,7 @@
 title: "Article Generator - BitPost 30 Day Challenge Day 25"
 date: "2021-09-25"
 author: "Zach Robertson"
-headerImage: "/blog/images/article_generator_header.png"
+"shortDescription": "How to generate articles with GPT - from the BitPost 30 Day Challenge"
 ---
 
 ## Note

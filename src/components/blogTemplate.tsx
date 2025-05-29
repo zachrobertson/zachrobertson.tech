@@ -7,7 +7,6 @@ import { MED_DEVICE_MAX_WIDTH, SMALL_DEVICE_MAX_WIDTH } from './deviceConstants'
 
 const BlogContainer = styled.div`
     width: 50%;
-    padding: 1rem;
     margin: 0 auto;
     text-align: center;
     font-size: 20px;
@@ -57,11 +56,6 @@ const BlogTitle = styled.h2`
     text-align: left;
 `;
 
-const HeaderImage = styled.img`
-    width: 100%;
-    height: auto;
-`;
-
 const AuthorDateContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -81,7 +75,6 @@ function BlogTemplate(data: BlogData) {
                 <span>{data.author}</span>
                 <span>{formattedDate}</span>
             </AuthorDateContainer>
-            <HeaderImage src={data.headerImage} alt={data.title} />
             <BlogContainer>
                 <div dangerouslySetInnerHTML={{__html: data.html}} />
             </BlogContainer>

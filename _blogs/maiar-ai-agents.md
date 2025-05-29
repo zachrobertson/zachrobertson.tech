@@ -2,7 +2,7 @@
 title: "Maiar: Beginners guide"
 date: "2025-04-05"
 author: "Zach Robertson"
-"shortDescription": "Beginners guide to using the maiar-ai framework for building ai agents"
+"shortDescription": "Beginners guide to using the maiar-ai agentic framework"
 ---
 
 ## Table of Contents

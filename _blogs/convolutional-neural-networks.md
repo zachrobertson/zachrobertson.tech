@@ -2,7 +2,7 @@
 title: "Convolutional Neural Networks - BitPost 30 Day Challenge Day 12"
 date: "2021-09-12"
 author: "Zach Robertson"
-"shortDescription": "test"
+"shortDescription": "An explanation of how convolution neural network work for computer vision - from the BitPost 30 Day Challenge"
 ---
 
 ## Note

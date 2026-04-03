@@ -1,14 +1,25 @@
 import { AppProps } from "next/app";
-import { Fira_Code } from "next/font/google";
-
-const firaCode = Fira_Code({
-  subsets: ["latin"]
-})
+import { siteFont } from "@/lib/fonts";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={firaCode.className}>
-      <Component {...pageProps} />
-    </main>
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `html, body { font-family: ${siteFont.style.fontFamily}; }`,
+        }}
+      />
+      <div
+        className={siteFont.className}
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        <Component {...pageProps} />
+      </div>
+    </>
   );
-};
+}

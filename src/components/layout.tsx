@@ -3,84 +3,102 @@ import styled from 'styled-components';
 import { createGlobalStyle } from "styled-components";
 
 import Header from '@/components/header';
-import Footer from '@/components/footer';
-import { SMALL_DEVICE_MAX_WIDTH, MED_DEVICE_MAX_WIDTH } from '@/components/deviceConstants';
-
+import { DESKTOP_BREAKPOINT } from './constants';
+import { theme } from '@/theme';
 
 const Global = createGlobalStyle`
-    html, body {
-        height: 100%;
-        width: 100%;
-        background-color: black;
-        color: white;
+    * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
-        display: flex;
-        flex-direction: column;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        font-size: 100%;
-        min-height: 100vh;
-
-        @media (min-width: ${MED_DEVICE_MAX_WIDTH+1}px) {
-            width: 1024px;
-        }
-
-        @media (min-width: ${SMALL_DEVICE_MAX_WIDTH+1}px) and (max-width: ${MED_DEVICE_MAX_WIDTH}px) {
-            width: 768px;
-        }
-
-        @media (max-width: ${SMALL_DEVICE_MAX_WIDTH}px) {
-            width: 80%
-        }
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.6;
+        color: ${theme.text};
+        background-color: ${theme.background};
     }
 
     #__next {
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
-        width: 100%;
     }
 
     a {
         text-decoration: none;
-    }
-    
-    a:hover {
-        text-decoration: none;
-    }
-
-    ::selection {
-        background-color: rgba(0, 255, 0, 0.5);
-        color: #00FF00;
+        color: inherit;
     }
 `;
 
 const StyledLayout = styled.div`
     flex: 1;
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    
+    /* Mobile: stack vertically */
+    flex-direction: column;
+    
+    /* Desktop: split screen */
+    @media (min-width: ${DESKTOP_BREAKPOINT}px) {
+        flex-direction: row;
+        overflow: hidden;
+    }
 `;
 
-type LayoutProps = {
-    pageName: string;
-    children: React.ReactNode;
-};
+const LeftPanel = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    
+    /* Mobile: full width */
+    width: 100%;
+    
+    /* Desktop: left half */
+    @media (min-width: ${DESKTOP_BREAKPOINT}px) {
+        width: 50%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        justify-content: center;
+    }
+`;
 
-const Layout: React.FC<LayoutProps> = ({ children, pageName }) => {
+const RightPanel = styled.div`
+    flex: 1;
+    padding: 2rem;
+    
+    /* Mobile: full width */
+    width: 100%;
+    
+    /* Desktop: right half, offset by left panel */
+    @media (min-width: ${DESKTOP_BREAKPOINT}px) {
+        width: 50%;
+        margin-left: 50%;
+        overflow-y: auto;
+        height: 100vh;
+    }
+`;
+
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <>
             <Global/>
             <StyledLayout>
-                <Header pageName={pageName} />
-                {children}
-                <Footer/>
+                <LeftPanel>
+                    <Header/>
+                </LeftPanel>
+                <RightPanel>
+                    {children}
+                </RightPanel>
             </StyledLayout>
         </>
     );

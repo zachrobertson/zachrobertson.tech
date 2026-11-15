@@ -1,6 +1,6 @@
 .header {
-    max-width: var(--measure);
-    margin-bottom: 2.5rem;
+    max-width: 48rem;
+    margin-bottom: 3rem;
 }
 
 .back {
@@ -15,9 +15,11 @@
 
 .title {
     margin: 1.25rem 0 0.75rem;
-    font-size: clamp(2rem, 5vw, 2.75rem);
-    line-height: 1.12;
-    letter-spacing: -0.025em;
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    text-wrap: balance;
 }
 
 .description {

@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import ThemeToggle from "./ThemeToggle";
 import styles from "./SiteHeader.module.css";
 
 const LINKS = [
-    { href: "/blogs", label: "writing", match: ["/blogs", "/blog"] },
+    { href: "/blogs", label: "projects", match: ["/blogs", "/blog"] },
     { href: "/about", label: "about", match: ["/about"] },
 ];
 
@@ -17,8 +18,7 @@ export default function SiteHeader() {
         <header className={styles.header}>
             <div className={styles.inner}>
                 <Link href="/" className={styles.brand}>
-                    <span className={styles.mark} aria-hidden="true">zr</span>
-                    <span>zachrobertson.tech</span>
+                    Zach Robertson
                 </Link>
                 <nav aria-label="Primary" className={styles.nav}>
                     {LINKS.map(({ href, label, match }) => {
@@ -29,6 +29,7 @@ export default function SiteHeader() {
                             </Link>
                         );
                     })}
+                    <ThemeToggle />
                 </nav>
             </div>
         </header>

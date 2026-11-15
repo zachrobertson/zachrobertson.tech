@@ -16,9 +16,15 @@ export const metadata: Metadata = {
     icons: { icon: "/favicon.svg" },
 };
 
+// Runs before first paint so a saved choice never flashes the wrong theme.
+const THEME_INIT = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+        <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+            </head>
             <body>
                 <SiteHeader />
                 <main>{children}</main>

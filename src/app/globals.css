@@ -1,39 +1,40 @@
 :root {
     color-scheme: light dark;
 
-    --bg: #fafaf8;
-    --surface: #f1f1ed;
-    --surface-hover: #ebebe6;
-    --border: #dcdcd4;
-    --text: #17191c;
-    --text-muted: #5d636d;
-    --accent: #0b7a68;
-    --accent-soft: rgba(11, 122, 104, 0.1);
-    --link: #0b7a68;
+    --bg: #f7f5f0;
+    --surface: #efece4;
+    --surface-hover: #e9e5db;
+    --border: #e0dcd1;
+    --text: #16150f;
+    --text-muted: #6e6a5f;
+    --accent: #1d6b57;
+    --accent-soft: rgba(29, 107, 87, 0.09);
+    --link: #1d6b57;
 
     --tok-keyword: #b3226b;
-    --tok-string: #0b7a68;
+    --tok-string: #1d6b57;
     --tok-number: #a65a00;
-    --tok-comment: #7b828c;
+    --tok-comment: #8a867a;
     --tok-title: #2653c4;
     --tok-attr: #7a3fc4;
 
     --font-sans: var(--font-geist-sans), system-ui, sans-serif;
     --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-    --measure: 44rem;
-    --wide: 60rem;
-    --gutter: 1.25rem;
+    --measure: 42rem;
+    --wide: 58rem;
+    --gutter: 1.5rem;
 }
 
+/* Dark palette: follows the system unless the viewer picked a theme. */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #0c0e11;
-        --surface: #14171c;
-        --surface-hover: #1a1e25;
-        --border: #262b33;
-        --text: #e7e9ec;
-        --text-muted: #8d95a2;
+    :root:not([data-theme="light"]) {
+        --bg: #0e0f0d;
+        --surface: #171815;
+        --surface-hover: #1d1f1b;
+        --border: #272823;
+        --text: #ecebe5;
+        --text-muted: #918f84;
         --accent: #5fd3b0;
         --accent-soft: rgba(95, 211, 176, 0.1);
         --link: #5fd3b0;
@@ -45,6 +46,30 @@
         --tok-title: #82aaff;
         --tok-attr: #c4a0ff;
     }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0e0f0d;
+    --surface: #171815;
+    --surface-hover: #1d1f1b;
+    --border: #272823;
+    --text: #ecebe5;
+    --text-muted: #918f84;
+    --accent: #5fd3b0;
+    --accent-soft: rgba(95, 211, 176, 0.1);
+    --link: #5fd3b0;
+
+    --tok-keyword: #ff7eb6;
+    --tok-string: #7ee0c3;
+    --tok-number: #f0b36b;
+    --tok-comment: #6b7380;
+    --tok-title: #82aaff;
+    --tok-attr: #c4a0ff;
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
 }
 
 *,
@@ -76,7 +101,7 @@ main {
     width: 100%;
     max-width: var(--wide);
     margin: 0 auto;
-    padding: 3rem var(--gutter) 4rem;
+    padding: 4rem var(--gutter) 6rem;
 }
 
 a {

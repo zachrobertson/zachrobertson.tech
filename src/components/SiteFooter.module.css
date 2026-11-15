@@ -1,5 +1,4 @@
 .footer {
-    border-top: 1px solid var(--border);
     font-family: var(--font-mono);
     font-size: 0.8125rem;
     color: var(--text-muted);
@@ -8,7 +7,8 @@
 .inner {
     max-width: var(--wide);
     margin: 0 auto;
-    padding: 1.5rem var(--gutter);
+    padding: 2rem var(--gutter) 2.5rem;
+    border-top: 1px solid var(--border);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -17,9 +17,9 @@
 
 .links {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.5rem;
 }
 
 .links a:hover {
-    color: var(--accent);
+    color: var(--text);
 }

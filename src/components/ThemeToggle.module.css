@@ -1,0 +1,18 @@
+.button {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 120ms, border-color 120ms;
+}
+
+.button:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+}

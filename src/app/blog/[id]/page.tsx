@@ -36,7 +36,7 @@ export default async function BlogPostPage({ params }: Props) {
     return (
         <article>
             <header className={styles.header}>
-                <Link href="/blogs" className={styles.back}>← all writing</Link>
+                <Link href="/blogs" className={styles.back}>← all projects</Link>
                 <h1 className={styles.title}>{post.title}</h1>
                 <p className={styles.description}>{post.description}</p>
                 <div className={styles.meta}>

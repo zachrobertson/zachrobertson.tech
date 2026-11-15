@@ -1,72 +1,40 @@
 .hero {
-    padding: 1rem 0 4rem;
-    max-width: var(--measure);
+    padding: 2rem 0 6rem;
 }
 
-.name {
-    margin: 0.75rem 0 1.25rem;
-    font-size: clamp(2.5rem, 7vw, 3.75rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+.headline {
+    max-width: 18ch;
+    margin: 1.25rem 0 1.75rem;
+    font-size: clamp(2.75rem, 8vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    text-wrap: balance;
+}
+
+.em {
+    color: var(--text-muted);
 }
 
 .lede {
-    margin: 0;
+    max-width: 34rem;
+    margin: 0 0 1.75rem;
     font-size: 1.2rem;
     color: var(--text-muted);
 }
 
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2rem;
-}
-
-.primary,
-.secondary {
-    padding: 0.55rem 1.1rem;
-    border-radius: 8px;
+.more {
     font-family: var(--font-mono);
     font-size: 0.875rem;
-    border: 1px solid var(--border);
-    transition: border-color 120ms, background 120ms;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
 }
 
-.primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--bg);
-    font-weight: 500;
-}
-
-.primary:hover {
-    background: color-mix(in srgb, var(--accent) 85%, var(--text));
-}
-
-.secondary:hover {
-    border-color: var(--accent);
+.more:hover {
     color: var(--accent);
 }
 
-.sectionHead {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 1.25rem;
-}
-
-.sectionHead h2 {
-    margin: 0;
+.sectionLabel {
+    margin: 0 0 1.25rem;
     font-weight: 400;
-}
-
-.all {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-}
-
-.all:hover {
-    color: var(--accent);
 }

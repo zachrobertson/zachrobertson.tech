@@ -11,10 +11,10 @@ I work on aerospace software, and I wanted to know what happens if a language-mo
 The result is [trick-sandbox](https://github.com/zeeman-effect/trick-sandbox), a [NASA Trick](https://github.com/nasa/trick) simulation of a small spacecraft docking with a space station. A supervisor decides which phase of the approach to fly, and that supervisor can be either a conventional threshold sequence or **Jev**, a model from [TypeSafe.ai](https://typesafe.ai).
 
 <figure class="wide">
-<video controls muted loop playsinline preload="metadata">
+<video controls muted loop playsinline preload="none" poster="/blog/docking/docking-poster.jpg">
   <source src="/blog/docking/docking-replay.mp4" type="video/mp4" />
 </video>
-<figcaption>Replay of a Jev-supervised docking run from the sim's 3D scene.</figcaption>
+<figcaption>Replay of the run plotted below, from the sim's 3D dashboard: six minutes at real time, with the chase camera, a nose-camera inset, and live telemetry.</figcaption>
 </figure>
 
 ## The plant

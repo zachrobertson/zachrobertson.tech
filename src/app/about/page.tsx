@@ -9,7 +9,7 @@ export default function AboutPage() {
     return (
         <>
             <p className="eyebrow">about</p>
-            <h1 style={{ margin: "0.5rem 0 2rem", fontSize: "2.25rem", letterSpacing: "-0.02em" }}>About me</h1>
+            <h1 style={{ margin: "0.5rem 0 2.5rem", fontSize: "clamp(2.25rem, 6vw, 3.5rem)", letterSpacing: "-0.035em", lineHeight: 1.05 }}>About me</h1>
             <div className="prose">
                 <p>
                     I&apos;m Zach Robertson, a software developer with a physics degree. Day to day I work as an aerospace software engineer, which

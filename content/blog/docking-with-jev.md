@@ -6,7 +6,7 @@ description: "A NASA Trick simulation of a chaser docking with a space station, 
 tags: ["simulation", "nasa-trick", "ai", "aerospace"]
 ---
 
-I work on aerospace software, and I wanted to know what happens if a language-model-style component sits in the loop of a real vehicle simulation. Not as a chatbot, and not as something that writes thrust commands. I wanted to see whether it could do the part of the job that is hard to write as `if` statements: looking at the situation and saying *how the approach is going*.
+I work on aerospace software, and I wanted to know what happens if an AI model sits in the loop of a real vehicle simulation. Not as a chatbot, and not as something that writes thrust commands. I wanted to see whether it could do the part of the job that is hard to write as `if` statements: looking at the situation and saying *how the approach is going*.
 
 The result is [trick-sandbox](https://github.com/zeeman-effect/trick-sandbox), a [NASA Trick](https://github.com/nasa/trick) simulation of a small spacecraft docking with a space station. A supervisor decides which phase of the approach to fly, and that supervisor can be either a conventional threshold sequence or **Jev**, a model from [TypeSafe.ai](https://typesafe.ai).
 
@@ -28,7 +28,7 @@ The scenario lives in `SIM_prox`. A station sits at the origin of a rotating loc
 - **Six jet groups** along the body axes. The inner loop takes an acceleration request, rotates it into body axes, and allocates it across jets.
 - **A noisy relative-navigation estimate.** Guidance flies on an estimate whose error grows with range, while contact and capture are judged against truth. That gap is what makes alignment a real problem instead of a bookkeeping one.
 
-Docking is a mechanism, not a flag. The chaser arms a soft-capture ring and extends it. When the ring meets the station port, the contact is classified against a capture envelope: lateral miss, pointing, roll, closing speed, and body rates. A good contact soft-captures, damps on a spring, retracts the ring, and drives the hard-capture hooks. A bad contact bounces the chaser back along +V and disarms the ring. The sim also tracks plume impingement, so a firing jet whose exhaust cone hits the station is counted against you.
+Docking is a mechanism, not a flag. The chaser arms a soft-capture ring and extends it. When the ring meets the station port, the contact is classified against a capture envelope: lateral miss, pointing, roll, closing speed, and body rates. A good contact soft-captures, damps on a spring, retracts the ring, and drives the hard-capture hooks. A bad contact bounces the chaser back along the station's direction of travel (+V-bar) and disarms the ring. The sim also tracks plume impingement, so a firing jet whose exhaust cone hits the station is counted against you.
 
 ## Six commands
 
@@ -77,7 +77,7 @@ if phase_conf >= min_choice_confidence and proposed in legal:
 return decide(*_plant_default(need_align, lined_up, env))
 ```
 
-The ordering matters. Aborts and the docking trigger belong to code, because those are hard rules where a miss is expensive. A phase that is still legal is held, so the commander does not chatter between phases from one cycle to the next. Jev only decides when there is genuine room for judgment, and only among phases the gate has already declared legal. If its confidence is low, or it proposes something illegal, the gate falls back to the closed-form default.
+The ordering matters. Aborts and the docking trigger belong to code, because those are hard rules where a miss is expensive. A phase that is still legal is held, so the supervisor does not chatter between phases from one cycle to the next. Jev only decides when there is genuine room for judgment, and only among phases the gate has already declared legal. If its confidence is low, or it proposes something illegal, the gate falls back to the closed-form default.
 
 There is a second mode where Jev also helps run the actuators. In that mode it answers three intensity scores (`none` through `full`) for attitude, lateral translation, and closing, and code scales the closed-form request by that amount. Code still owns the PD law, the jet allocation, and the newtons. Jev supplies a number between zero and one.
 
@@ -86,7 +86,7 @@ There is a second mode where Jev also helps run the actuators. In that mode it a
 The sim logs both supervisors every second: the command that was executed, and the closed-form `cfs` command computed in the same cycle as a shadow. Here is a full docking run from 150 m, with Jev in command.
 
 <figure class="wide">
-<img src="/blog/docking/run-timeline.svg" alt="Three stacked panels over 364 seconds. Range falls from 150 metres to zero, lateral offset falls from about 7 metres to under a centimetre, and two colored strips show the commanded phase from Jev and from the closed-form shadow." />
+<img src="/blog/docking/run-timeline.svg" alt="Three stacked panels over 364 seconds. Range falls from 150 meters to zero, lateral offset falls from about 7 meters to under a centimetre, and two colored strips show the commanded phase from Jev and from the closed-form shadow." />
 <figcaption>Range, lateral offset, and commanded phase over one run. The top strip is what Jev commanded; the bottom is what the closed-form logic would have commanded on the same state. After soft capture the mechanism owns the vehicle and the shadow goes idle.</figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ A few things I take from it:
 
 - **It docks.** The chaser closes from about 150 m, reaches the capture box at roughly 307 s, soft-captures around 327 s, and the logs show the docked flag at 352 s.
 - **The two supervisors mostly agree.** Before soft capture, Jev and the shadow logic issued the same command in 251 of 327 one-second samples, about 77%.
-- **Where they disagree, Jev is the cautious one.** Of the 76 samples where the two differed before capture, 72 are Jev holding `CORRECT` (null the lateral offset, do not close) while the shadow logic had already moved on to `CREEP`. Jev waits for the lateral margin to be comfortably positive before it starts closing. Of the other four, three are Jev retreating where the shadow would have crept, and one is Jev holding where the shadow would have aligned.
+- **Where they disagree, the Jev-run supervisor is the cautious one.** Of the 76 samples where the two differed before capture, 72 are the supervisor holding `CORRECT` (null the lateral offset, do not close) while the shadow logic had already moved on to `CREEP`. That hold comes from the gate's sticky-phase rule, not from Jev: `CORRECT` stays in command until the envelope ends it. Of the other four, three are the gate's near-field retreat where the shadow would have crept, and one is Jev holding where the shadow would have aligned.
 - **The near-field abort stays in code.** The five `RETREAT` seconds near 17 m come from the gate's near-field closing rule, not from the model's phase choice.
 
 This is one run, not a Monte Carlo campaign. It tells me the architecture works end to end. It does not tell me Jev is *better* than a threshold sequence, and I would not claim that from a single trajectory.
@@ -116,6 +116,6 @@ SIM_NAME=SIM_prox ./scripts/build.sh
 SIM_NAME=SIM_prox ./scripts/run.sh realtime
 ```
 
-That starts the sim and the 3D scene with the closed-form supervisor. To put Jev in the loop, set `SUPERVISOR=jev` (and optionally `CONTROL=jev` for intensity control) with a TypeSafe API key. Slowing the clock with `TRICK_RT_FACTOR=0.1` helps, because a Jev round trip runs at a few hertz and the plant runs at 50.
+That starts the sim and the 3D scene with the closed-form supervisor. To put Jev in the loop, set `SUPERVISOR=jev` (and optionally `CONTROL=jev` for intensity control) with a TypeSafe API key. Slowing the clock with `TRICK_RT_FACTOR=0.1` helps, because a Jev round trip runs at a few hertz and the plant runs at 50 Hz.
 
 The code is on [GitHub](https://github.com/zeeman-effect/trick-sandbox).

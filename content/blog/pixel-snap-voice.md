@@ -2,7 +2,7 @@
 title: "Designing a voice recorder that snaps onto a Pixel 10"
 date: "2026-11-14"
 author: "Zach Robertson"
-description: "A slim voice-note recorder that magnetically attaches to the back of a Pixel 10, and the simulate-first workflow I used to get a custom board to a clean ship gate."
+description: "A slim voice-note recorder that magnetically attaches to the back of a Pixel 10, and the simulate-first workflow I used before ordering a custom board."
 tags: ["hardware", "esp32", "kicad", "embedded"]
 ---
 
@@ -19,7 +19,7 @@ That became [pixel-snap-voice](https://github.com/zeeman-effect/pixel-snap-voice
 
 The device is deliberately narrow in scope:
 
-- Records **48 kHz, 16-bit, mono WAV** files, about 173 MB per hour.
+- Records **48 kHz, 16-bit, mono WAV** files, about 346 MB per hour.
 - Charges and dumps files over **USB-C**, appearing as a plain drive.
 - Can start its own **Wi-Fi network** and serve its recordings to a browser, with a read-only WebDAV folder as well.
 - Does **no transcription on the device**, has no Bluetooth file transfer, and does not charge wirelessly through the magnet ring.
@@ -30,7 +30,7 @@ Most of the interesting work was in deciding what to leave out. Each exclusion c
 
 - **Transcription stays on the computer.** Running a speech model on a microcontroller with no PSRAM is a project of its own. Dumping WAVs and running [whisper.cpp](https://github.com/ggerganov/whisper.cpp) locally is a small script, and it keeps audio off any cloud API.
 - **Bluetooth stays off.** The S3 has no Bluetooth Classic, so file transfer would be BLE, which is slow for hours of audio.
-- **No wireless charging through the shell.** That is an unsolved problem, and I did not want to invent a solution for it. The battery charges over USB-C.
+- **No wireless charging through the shell.** That is a hard problem for a one-off board, and I did not want to take it on. The battery charges over USB-C.
 
 ## Parts, and why not different parts
 
@@ -57,8 +57,8 @@ The Pixel 10 body is 152.8 × 72 × 8.6 mm, with a camera bar that adds about 3.
 
 Two details I would have gotten wrong without writing them down:
 
-- **Not steel.** A steel tray shorts the magnetic path. The only steel is the plate already glued onto the bought ring.
-- **The record button is a side-push switch.** Its plunger fires sideways into the phone-left wall when the accessory is snapped on, so nothing has to poke through the phone-facing face.
+- **The tray is not steel.** A steel tray shorts the magnetic path. The only steel is the plate already glued onto the bought ring.
+- **The record button is a side-push switch.** Its plunger fires sideways into the wall on the phone's left side when the accessory is snapped on, so nothing has to poke through the phone-facing face.
 
 The Pixelsnap center and the camera-bar dimensions I used are published defaults, not measurements. The design notes say plainly that someone has to caliper the real phone before a metal case is cut, and the CAD files do not pretend otherwise.
 
@@ -70,7 +70,7 @@ The point of this project was never the board by itself. It was getting to a boa
 
 **The power path is simulated.** An ngspice model covers USB through a PTC and charger to the battery and a 3.3 V rail, in two cases: USB with the battery unplugged, and battery only. It is a first-spin model, not a substitute for measuring the real board.
 
-**The mechanical envelope is a script.** A Python checker verifies the keepouts: the accessory must not overlap the camera bar, the USB-C mouth must be on the phone-bottom wall, the microphone port must face a free edge, and the magnet ring must stay inside the outline.
+**The mechanical envelope is a script.** A Python checker verifies the keepouts: the accessory must not overlap the camera bar, the USB-C mouth must be on the wall at the phone's bottom edge, the microphone port must face a free edge, and the magnet ring must stay inside the outline.
 
 **One ship gate runs everything.** `check_gates.py` runs the format checks, KiCad's design-rule check with schematic parity, pin and MCU checks, and placement checks. It then exports Gerbers, drill files, and the pick-and-place file, and generates the JLCPCB bill of materials. The rule for the order button is simple: it does not get pressed until that script is clean.
 
@@ -82,12 +82,10 @@ check_gates: ok
 
 A small example of why the gate earns its keep: JLCPCB will not machine-place a part with an empty order-code cell. The BOM is generated from the board, and a part with no LCSC number fails the script, so that mistake surfaces at my desk rather than in an email from the fab.
 
-## Working with agents
-
 A lot of this repo was built with coding agents driving KiCad's Python API: generating schematic sheets, placing and routing, exporting fab files. That works because the gates are strict and machine-checkable. An agent that moves a footprint onto the wrong face of the board, or edits a BOM by hand, gets stopped by a script, not by my attention.
 
 ## Where it stands
 
-The board is designed, routed, and passes its gates. Every part has a fab order code that was checked against the fab's parts library, and the case parameters are set. The notes are open about what is not settled: the real Pixel measurements, the first-article power numbers on assembled hardware, and whether the 512 MB prototype storage is worth upgrading. On this storage chip the recorder fills in about 1.4 hours, well before the 7.5 hours the battery would last.
+The board is designed, routed, and passes its gates. Every part has a fab order code that was checked against the fab's parts library, and the case parameters are set. The notes are open about what is not settled: the real Pixel measurements, power measurements on the first assembled board, and whether the 512 MB prototype storage is worth upgrading. On this storage chip the recorder fills in about 1.4 hours, well before the 7.5 hours the battery would last.
 
 If you want to look closer, the architecture notes explain every electrical and mechanical decision, and the bring-up document describes how to prove the audio path on an off-the-shelf ESP32-S3 voice board before trusting a custom PCB. The code and design files are on [GitHub](https://github.com/zeeman-effect/pixel-snap-voice).

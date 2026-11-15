@@ -1,0 +1,70 @@
+.header {
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.inner {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 0.85rem var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.mark {
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.nav {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.link {
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    transition: color 120ms, background 120ms;
+}
+
+.link:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.link[aria-current="page"] {
+    color: var(--accent);
+    background: var(--accent-soft);
+}
+
+@media (max-width: 480px) {
+    .brand span:last-child {
+        display: none;
+    }
+}

@@ -1,0 +1,40 @@
+.header {
+    max-width: 48rem;
+    margin-bottom: 3rem;
+}
+
+.back {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.back:hover {
+    color: var(--accent);
+}
+
+.title {
+    margin: 1.25rem 0 0.75rem;
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    text-wrap: balance;
+}
+
+.description {
+    margin: 0 0 1.25rem;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}

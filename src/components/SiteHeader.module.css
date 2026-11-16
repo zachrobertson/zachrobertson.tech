@@ -1,0 +1,47 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+}
+
+.inner {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 1.5rem var(--gutter);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 120ms, border-color 120ms;
+}
+
+.link:hover {
+    color: var(--text);
+}
+
+.link[aria-current="page"] {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+}

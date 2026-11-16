@@ -1,12 +1,30 @@
-# ZACHROBERTSON.TECH
+# zachrobertson.tech
 
-This is my website built using [Next.js](https://www.nextjs.com/) and deployed on [Vercel](https://www.vercel.com). It is a simple blog site that is styled like a linux terminal application.
+Personal site and blog, built with [Next.js](https://nextjs.org) (App Router) and deployed on [Vercel](https://vercel.com).
 
-## Blog Search Feature
+## Writing a post
 
-The blog now includes an AI-powered search feature that allows visitors to search through blog content using natural language queries.
+Add a Markdown file to `content/blog/`. The file name becomes the URL (`/blog/<name>`).
 
-It is a very simple design that uses the fact that there is not an enormous amount of blog content on this site, so all of it and a user query can fit into the context window of
-any modern LLM. This greatly simplifies the search feature, allowing us to make a single OpenAI API call per user query.
+```markdown
+---
+title: "Post title"
+date: "2026-01-31"
+author: "Zach Robertson"
+description: "One sentence shown on cards and in the RSS feed."
+tags: ["simulation", "ai"]
+---
+```
 
-An alternative to this approach is to implement RAG, but this would require a vector database and use of an embedding model along side the LLM. This would mean more calls to the OpenAI API per user query and the additional complexity of integrating a serverless vector database because this site is deployed on Vercel.
+Raw HTML (`<figure>`, `<video>`) is allowed in posts. Put images and video under `public/blog/<name>/`.
+
+## Development
+
+```bash
+yarn install
+yarn dev      # http://localhost:3000
+yarn lint
+yarn build
+```
+
+No environment variables or API keys are required.

@@ -1,0 +1,25 @@
+.footer {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.inner {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 2rem var(--gutter) 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+}
+
+.links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.links a:hover {
+    color: var(--text);
+}
